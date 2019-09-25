@@ -19,9 +19,9 @@ extension Item {
     @NSManaged public var amount: String?
     @NSManaged public var date: String?
     @NSManaged public var detail: String?
-    @NSManaged public var expenseType: String?
+    @NSManaged public var title: String?
     @NSManaged public var id: UUID?
-    @NSManaged public var incomeType: String?
+    @NSManaged public var category: String?
     @NSManaged public var type: String?
     @NSManaged public var user: User?
     

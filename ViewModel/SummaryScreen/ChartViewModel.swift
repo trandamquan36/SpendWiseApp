@@ -86,11 +86,11 @@ struct ChartViewModel {
         
         for date in dates {
             for i in 0...dates.count - 1 {
-                if itemTypes[i] == CustomItemType.expense.getType() {
+                if itemTypes[i] == CustomItemType.expense.name{
                     if let instantAmount = Double(amounts[i]) {
                         totalExpense += instantAmount
                     }
-                } else if itemTypes[i] == CustomItemType.income.getType() {
+                } else if itemTypes[i] == CustomItemType.income.name {
                     if let instantAmount = Double(amounts[i]) {
                         totalIncome += instantAmount
                     }

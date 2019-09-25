@@ -8,12 +8,16 @@
 
 import Foundation
 
-enum CustomItemType:String {
+enum CustomItemType {
     case income
     case expense
     case none
     
-    func getType() -> String {
-        return self.rawValue
+    var name:String {
+        switch self {
+        case .income: return "Income"
+        case .expense: return "Expense"
+        case .none: return "None"
+        }
     }
 }

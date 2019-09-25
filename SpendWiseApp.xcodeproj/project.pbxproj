@@ -28,7 +28,6 @@
 		6F098A282336B867006D01AF /* SecondEditPinScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F098A272336B867006D01AF /* SecondEditPinScreenViewModel.swift */; };
 		6F098A2A23375C51006D01AF /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F098A2923375C51006D01AF /* ChartViewModel.swift */; };
 		6F098A2C23375CA8006D01AF /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F098A2B23375CA8006D01AF /* ChartData.swift */; };
-		6F098A2E23375CE1006D01AF /* ChartColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F098A2D23375CE1006D01AF /* ChartColor.swift */; };
 		6F098A3023375D20006D01AF /* GoalSetterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F098A2F23375D20006D01AF /* GoalSetterData.swift */; };
 		6F098A3223375D85006D01AF /* CustomDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F098A3123375D85006D01AF /* CustomDate.swift */; };
 		6F098A3423376B69006D01AF /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F098A3323376B69006D01AF /* FeedbackViewController.swift */; };
@@ -61,8 +60,7 @@
 		6F8933C02336058D001B915F /* CurrencyConverterScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933BF2336058D001B915F /* CurrencyConverterScreenViewController.swift */; };
 		6F8933C2233605B6001B915F /* CurrencyConverterScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933C1233605B6001B915F /* CurrencyConverterScreenViewModel.swift */; };
 		6F8933C4233605FF001B915F /* CustomItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933C3233605FF001B915F /* CustomItemType.swift */; };
-		6F8933C62336063A001B915F /* CustomExpenseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933C52336063A001B915F /* CustomExpenseType.swift */; };
-		6F8933C8233606CD001B915F /* CustomIncomeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933C7233606CD001B915F /* CustomIncomeType.swift */; };
+		6F8933C8233606CD001B915F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933C7233606CD001B915F /* Category.swift */; };
 		6F8933CA233607CD001B915F /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933C9233607CD001B915F /* Item+CoreDataClass.swift */; };
 		6F8933CC233607DA001B915F /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933CB233607DA001B915F /* Item+CoreDataProperties.swift */; };
 		6F8933D423363668001B915F /* FirstEditPasswordScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933D323363668001B915F /* FirstEditPasswordScreenViewModel.swift */; };
@@ -75,14 +73,13 @@
 		6F8933E4233637D4001B915F /* SecondEditPasswordScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933E3233637D4001B915F /* SecondEditPasswordScreenViewModel.swift */; };
 		6FCFB3A62324D710009D5409 /* FirstForgotPasswordScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFB3A52324D710009D5409 /* FirstForgotPasswordScreenViewController.swift */; };
 		6FCFB3A8232626CC009D5409 /* TempData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFB3A7232626CB009D5409 /* TempData.swift */; };
+		6FD46D14233BA46D00D32546 /* ChartColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD46D13233BA46D00D32546 /* ChartColor.swift */; };
 		6FFAF9432333B43900CC89F6 /* SummaryScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFAF93A2333B43900CC89F6 /* SummaryScreenViewController.swift */; };
 		6FFAF9442333B43900CC89F6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFAF93B2333B43900CC89F6 /* MenuViewController.swift */; };
-		6FFAF9462333B43900CC89F6 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFAF93D2333B43900CC89F6 /* ItemViewModel.swift */; };
 		6FFAF9482333B43900CC89F6 /* SettingsTableViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFAF93F2333B43900CC89F6 /* SettingsTableViewController2.swift */; };
-		6FFAF94A2333B43900CC89F6 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFAF9412333B43900CC89F6 /* ItemDetailViewController.swift */; };
+		6FFAF94A2333B43900CC89F6 /* ItemDescriptionScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFAF9412333B43900CC89F6 /* ItemDescriptionScreenViewController.swift */; };
 		6FFAF94E2333B46400CC89F6 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFAF94C2333B46400CC89F6 /* SettingsCell.swift */; };
 		6FFAF94F2333B46400CC89F6 /* ExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFAF94D2333B46400CC89F6 /* ExpenseTableViewCell.swift */; };
-		6FFAF9512333B48D00CC89F6 /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFAF9502333B48D00CC89F6 /* Items.swift */; };
 		EB87678DA1822DB412CAB100 /* Pods_SpendWiseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C03185A134B6AE8609BEFB6 /* Pods_SpendWiseApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -126,7 +123,6 @@
 		6F098A272336B867006D01AF /* SecondEditPinScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondEditPinScreenViewModel.swift; sourceTree = "<group>"; };
 		6F098A2923375C51006D01AF /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 		6F098A2B23375CA8006D01AF /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
-		6F098A2D23375CE1006D01AF /* ChartColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColor.swift; sourceTree = "<group>"; };
 		6F098A2F23375D20006D01AF /* GoalSetterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSetterData.swift; sourceTree = "<group>"; };
 		6F098A3123375D85006D01AF /* CustomDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDate.swift; sourceTree = "<group>"; };
 		6F098A3323376B69006D01AF /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
@@ -167,8 +163,7 @@
 		6F8933BF2336058D001B915F /* CurrencyConverterScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterScreenViewController.swift; sourceTree = "<group>"; };
 		6F8933C1233605B6001B915F /* CurrencyConverterScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterScreenViewModel.swift; sourceTree = "<group>"; };
 		6F8933C3233605FF001B915F /* CustomItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItemType.swift; sourceTree = "<group>"; };
-		6F8933C52336063A001B915F /* CustomExpenseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExpenseType.swift; sourceTree = "<group>"; };
-		6F8933C7233606CD001B915F /* CustomIncomeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIncomeType.swift; sourceTree = "<group>"; };
+		6F8933C7233606CD001B915F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		6F8933C9233607CD001B915F /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6F8933CB233607DA001B915F /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6F8933D323363668001B915F /* FirstEditPasswordScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstEditPasswordScreenViewModel.swift; sourceTree = "<group>"; };
@@ -181,14 +176,13 @@
 		6F8933E3233637D4001B915F /* SecondEditPasswordScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondEditPasswordScreenViewModel.swift; sourceTree = "<group>"; };
 		6FCFB3A52324D710009D5409 /* FirstForgotPasswordScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstForgotPasswordScreenViewController.swift; sourceTree = "<group>"; };
 		6FCFB3A7232626CB009D5409 /* TempData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempData.swift; sourceTree = "<group>"; };
+		6FD46D13233BA46D00D32546 /* ChartColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartColor.swift; sourceTree = "<group>"; };
 		6FFAF93A2333B43900CC89F6 /* SummaryScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryScreenViewController.swift; sourceTree = "<group>"; };
 		6FFAF93B2333B43900CC89F6 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		6FFAF93D2333B43900CC89F6 /* ItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		6FFAF93F2333B43900CC89F6 /* SettingsTableViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController2.swift; sourceTree = "<group>"; };
-		6FFAF9412333B43900CC89F6 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		6FFAF9412333B43900CC89F6 /* ItemDescriptionScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDescriptionScreenViewController.swift; sourceTree = "<group>"; };
 		6FFAF94C2333B46400CC89F6 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		6FFAF94D2333B46400CC89F6 /* ExpenseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseTableViewCell.swift; sourceTree = "<group>"; };
-		6FFAF9502333B48D00CC89F6 /* Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
 		7A5DB47D800348C78ABDCED5 /* Pods-SpendWiseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpendWiseApp.debug.xcconfig"; path = "Target Support Files/Pods-SpendWiseApp/Pods-SpendWiseApp.debug.xcconfig"; sourceTree = "<group>"; };
 		858F9CD1240C3CBA7702170A /* Pods-SpendWiseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpendWiseApp.release.xcconfig"; path = "Target Support Files/Pods-SpendWiseApp/Pods-SpendWiseApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -269,14 +263,12 @@
 		6F074CD623294F4700669DA0 /* NormalData */ = {
 			isa = PBXGroup;
 			children = (
-				6FFAF9502333B48D00CC89F6 /* Items.swift */,
 				6FCFB3A7232626CB009D5409 /* TempData.swift */,
 				6F0BA406231D42B600470F22 /* Colors.swift */,
 				6F8933C3233605FF001B915F /* CustomItemType.swift */,
-				6F8933C52336063A001B915F /* CustomExpenseType.swift */,
-				6F8933C7233606CD001B915F /* CustomIncomeType.swift */,
+				6F8933C7233606CD001B915F /* Category.swift */,
 				6F098A2B23375CA8006D01AF /* ChartData.swift */,
-				6F098A2D23375CE1006D01AF /* ChartColor.swift */,
+				6FD46D13233BA46D00D32546 /* ChartColor.swift */,
 				6F098A2F23375D20006D01AF /* GoalSetterData.swift */,
 				6F098A3123375D85006D01AF /* CustomDate.swift */,
 			);
@@ -480,8 +472,8 @@
 		6F8933B92336053B001B915F /* GoalSetterScreen */ = {
 			isa = PBXGroup;
 			children = (
-				6F8933BA23360567001B915F /* GoalSetterScreenViewModel.swift */,
 				6F8933BC23360576001B915F /* GoalSetterScreenViewController.swift */,
+				6F8933BA23360567001B915F /* GoalSetterScreenViewModel.swift */,
 			);
 			path = GoalSetterScreen;
 			sourceTree = "<group>";
@@ -554,7 +546,6 @@
 			children = (
 				6FFAF93F2333B43900CC89F6 /* SettingsTableViewController2.swift */,
 				6F8933D223363649001B915F /* EditPasswordScreen */,
-				6F8933D123363634001B915F /* EditPinScreen */,
 				6F8933CE233635D9001B915F /* EditProfileScreen */,
 			);
 			path = SettingScreen;
@@ -563,6 +554,7 @@
 		6FCFB3A12324D487009D5409 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				6F8933D123363634001B915F /* EditPinScreen */,
 				6F098A192336544A006D01AF /* Main.storyboard */,
 				6F0BA40E231E5A6400470F22 /* LaunchScreen.storyboard */,
 			);
@@ -580,8 +572,8 @@
 		6FFAF9522333B73900CC89F6 /* SummaryScreen */ = {
 			isa = PBXGroup;
 			children = (
+				6FFAF9412333B43900CC89F6 /* ItemDescriptionScreenViewController.swift */,
 				6FFAF93A2333B43900CC89F6 /* SummaryScreenViewController.swift */,
-				6FFAF93D2333B43900CC89F6 /* ItemViewModel.swift */,
 				6F8933B723360534001B915F /* SummaryScreenViewModel.swift */,
 				6F098A2923375C51006D01AF /* ChartViewModel.swift */,
 				6F098A3723376BD6006D01AF /* Section.swift */,
@@ -606,7 +598,6 @@
 		6FFAF9552333B7F500CC89F6 /* ItemDetailScreen */ = {
 			isa = PBXGroup;
 			children = (
-				6FFAF9412333B43900CC89F6 /* ItemDetailViewController.swift */,
 				6F07E2202336042B00B3DDC6 /* ItemDetailScreenViewController.swift */,
 				6F8933AD233604CC001B915F /* ExpenseScreenViewController.swift */,
 				6F8933AF233604EB001B915F /* IncomeScreenViewController.swift */,
@@ -807,7 +798,6 @@
 				6F074CF1232D883C00669DA0 /* LoginScreenViewModel.swift in Sources */,
 				6F2276ED2327FAC000070122 /* CoreDataManager.swift in Sources */,
 				6F8933CA233607CD001B915F /* Item+CoreDataClass.swift in Sources */,
-				6FFAF9512333B48D00CC89F6 /* Items.swift in Sources */,
 				6F8933C02336058D001B915F /* CurrencyConverterScreenViewController.swift in Sources */,
 				6F074CE4232CA7DC00669DA0 /* SecondSignupScreenViewController.swift in Sources */,
 				6F4CA2CF2333576100FCC561 /* ThirdSignupScreenViewModel.swift in Sources */,
@@ -830,11 +820,11 @@
 				6F8933D62336369D001B915F /* FirstEditPasswordScreenViewController.swift in Sources */,
 				6F8933DE233636FA001B915F /* EditProfileScreenViewController.swift in Sources */,
 				6F8933DA233636B4001B915F /* FirstEditPinScreenViewModel.swift in Sources */,
-				6FFAF9462333B43900CC89F6 /* ItemViewModel.swift in Sources */,
 				6F8933E2233637C5001B915F /* SecondEditPasswordScreenViewController.swift in Sources */,
 				6F098A3023375D20006D01AF /* GoalSetterData.swift in Sources */,
 				6F8933D423363668001B915F /* FirstEditPasswordScreenViewModel.swift in Sources */,
-				6F8933C8233606CD001B915F /* CustomIncomeType.swift in Sources */,
+				6F8933C8233606CD001B915F /* Category.swift in Sources */,
+				6FD46D14233BA46D00D32546 /* ChartColor.swift in Sources */,
 				6FFAF94E2333B46400CC89F6 /* SettingsCell.swift in Sources */,
 				6FFAF9482333B43900CC89F6 /* SettingsTableViewController2.swift in Sources */,
 				6F074CDC232B9A8000669DA0 /* FirstSignupScreenViewModel.swift in Sources */,
@@ -857,16 +847,14 @@
 				6F074CFA232DA6F200669DA0 /* ThirdForgotPasswordScreenViewController.swift in Sources */,
 				6F8933E4233637D4001B915F /* SecondEditPasswordScreenViewModel.swift in Sources */,
 				6F074CD22329440500669DA0 /* Validation.swift in Sources */,
-				6FFAF94A2333B43900CC89F6 /* ItemDetailViewController.swift in Sources */,
+				6FFAF94A2333B43900CC89F6 /* ItemDescriptionScreenViewController.swift in Sources */,
 				6F074CE9232D643E00669DA0 /* CameraScreenViewController.swift in Sources */,
 				6F0BA3CE231CFBE800470F22 /* AppDelegate.swift in Sources */,
-				6F098A2E23375CE1006D01AF /* ChartColor.swift in Sources */,
 				6F8933B2233604FA001B915F /* ItemDetailScreenViewModel.swift in Sources */,
 				6F098A282336B867006D01AF /* SecondEditPinScreenViewModel.swift in Sources */,
 				6F00DA10232F783400C81A11 /* User+CoreDataClass.swift in Sources */,
 				6F8933B823360534001B915F /* SummaryScreenViewModel.swift in Sources */,
 				6FFAF9432333B43900CC89F6 /* SummaryScreenViewController.swift in Sources */,
-				6F8933C62336063A001B915F /* CustomExpenseType.swift in Sources */,
 				6F098A2C23375CA8006D01AF /* ChartData.swift in Sources */,
 				6F8933BD23360576001B915F /* GoalSetterScreenViewController.swift in Sources */,
 				6F098A3A23376C0E006D01AF /* ExpandableHeaderViewNew.swift in Sources */,

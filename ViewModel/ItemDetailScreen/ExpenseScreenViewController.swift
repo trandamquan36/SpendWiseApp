@@ -25,7 +25,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var othersButton: DesignableButton!
     @IBOutlet weak var descriptionTextView: DesignableTextView!
     @IBAction func foodButtonPressed(_ sender: Any) {
-        TempData.expenseType = CustomExpenseType.food.getType()
+        TempData.itemCategory = Category.food.name
         
         for button in buttons {
             if button == foodButton {
@@ -36,7 +36,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     @IBAction func drinkButtonPressed(_ sender: Any) {
-        TempData.expenseType = CustomExpenseType.drink.getType()
+        TempData.itemCategory = Category.drink.name
         
         for button in buttons {
             if button == drinkButton {
@@ -47,7 +47,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     @IBAction func shopButtonPressed(_ sender: Any) {
-        TempData.expenseType = CustomExpenseType.shop.getType()
+        TempData.itemCategory = Category.shop.name
         
         for button in buttons {
             if button == shopButton {
@@ -58,7 +58,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     @IBAction func medicationButtonPressed(_ sender: Any) {
-        TempData.expenseType = CustomExpenseType.medication.getType()
+        TempData.itemCategory = Category.medication.name
         
         for button in buttons {
             if button == medicationButton {
@@ -69,8 +69,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     @IBAction func educationButtonPressed(_ sender: Any) {
-        TempData.expenseType = CustomExpenseType.education.getType()
-        
+        TempData.itemCategory = Category.education.name
         for button in buttons {
             if button == educationButton {
                 button.pressed()
@@ -80,7 +79,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     @IBAction func utilitiesButtonPressed(_ sender: Any) {
-        TempData.expenseType = CustomExpenseType.utilities.getType()
+        TempData.itemCategory = Category.utilities.name
         
         for button in buttons {
             if button == utilitiesButton {
@@ -91,7 +90,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     @IBAction func transportButtonPressed(_ sender: Any) {
-        TempData.expenseType = CustomExpenseType.transportation.getType()
+        TempData.itemCategory = Category.transportation.name
         
         for button in buttons {
             if button == transportButton {
@@ -102,7 +101,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     @IBAction func rentButtonPressed(_ sender: Any) {
-        TempData.expenseType = CustomExpenseType.rent.getType()
+        TempData.itemCategory = Category.rent.name
         
         for button in buttons {
             if button == rentButton {
@@ -113,7 +112,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     @IBAction func othersButtonPressed(_ sender: Any) {
-        TempData.expenseType = CustomExpenseType.others.getType()
+        TempData.itemCategory = Category.others.name
         
         for button in buttons {
             if button == othersButton {

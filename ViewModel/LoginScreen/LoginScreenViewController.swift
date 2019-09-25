@@ -94,16 +94,11 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
         // retrieve users' information
         retrieveDataFromDatabase()
         // create dummy data
-        print(checkDataIfExists(dummyUsername: "ValidUsername"))
         if checkDataIfExists(dummyUsername: "ValidUsername") == false {
-            
             createDummyData()
             // update again
             retrieveDataFromDatabase()
-        } else {
-            retrieveDataFromDatabase()
         }
-        
     }
     
 
@@ -168,10 +163,14 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
         // create 1 dummy acount
         viewModel.createDummyUserCoreData(name: "YourName", username: "ValidUsername", password: "ValidPassword", pinNumber: "0000")
         // create 2 incomes and 2 expenses
-        viewModel.createDummyItemCoreData(id: viewModel.generateID(), date: viewModel.getCurrentDate(), amount: "50", type: "income", expenseType: "none", incomeType: "salary", description: "Work Salary!")
-         viewModel.createDummyItemCoreData(id: viewModel.generateID(), date: viewModel.getCurrentDate(), amount: "60", type: "income", expenseType: "none", incomeType: "donation", description: "Mom's birthday gift!")
-         viewModel.createDummyItemCoreData(id: viewModel.generateID(), date: viewModel.getCurrentDate(), amount: "70", type: "expense", expenseType: "food", incomeType: "none", description: "Udon Yasan")
-         viewModel.createDummyItemCoreData(id: viewModel.generateID(), date: viewModel.getCurrentDate(), amount: "80", type: "expense", expenseType: "rent", incomeType: "none", description: "Rent Oct")
+        viewModel.createDummyItemCoreData(id: viewModel.generateID(), title: "Udon Yasan", date: viewModel.getCurrentDate(), amount: "20", type: CustomItemType.expense.name, category: Category.food.name, description: "Eating udon with friends on Friday Night")
+        
+        viewModel.createDummyItemCoreData(id: viewModel.generateID(), title: "January Rent", date: viewModel.getCurrentDate(), amount: "200", type: CustomItemType.expense.name, category: Category.rent.name, description: "House's rent in January")
+        
+        viewModel.createDummyItemCoreData(id: viewModel.generateID(), title: "Work Salary 1", date: viewModel.getCurrentDate(), amount: "1000", type: CustomItemType.income.name, category: Category.salary.name, description: "Woa so much money")
+        
+        viewModel.createDummyItemCoreData(id: viewModel.generateID(), title: "Mom's Birthday Gift", date: viewModel.getCurrentDate(), amount: "200", type: CustomItemType.income.name, category: Category.donation.name, description: "Mom's birthday gift for me ")
+        
     }
     
     private func checkDataIfExists(dummyUsername:String) -> Bool {

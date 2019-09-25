@@ -2,7 +2,7 @@
 //  ChartColor.swift
 //  SpendWiseApp
 //
-//  Created by Hieu Ha on 20/9/19.
+//  Created by Quan Tran on 25/9/19.
 //  Copyright © 2019 Quan Tran. All rights reserved.
 //
 

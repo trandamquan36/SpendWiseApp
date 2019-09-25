@@ -6832,10 +6832,10 @@
             </objects>
             <point key="canvasLocation" x="4088" y="44"/>
         </scene>
-        <!--Item Detail View Controller-->
+        <!--Item Description Screen View Controller-->
         <scene sceneID="OQc-NU-oIT">
             <objects>
-                <viewController id="8HW-xd-6JG" customClass="ItemDetailViewController" customModule="SpendWiseApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8HW-xd-6JG" customClass="ItemDescriptionScreenViewController" customModule="SpendWiseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ASn-MU-3aM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -7577,10 +7577,10 @@
     <inferredMetricsTieBreakers>
         <segue reference="Max-dz-bbg"/>
         <segue reference="nNR-rK-ACa"/>
-        <segue reference="40R-HT-m7l"/>
+        <segue reference="UHa-k0-3lU"/>
         <segue reference="WFM-X3-15B"/>
-        <segue reference="WxV-1Y-3wR"/>
+        <segue reference="9sZ-CL-Jx4"/>
         <segue reference="gzS-dL-PPS"/>
-        <segue reference="14p-WK-CMn"/>
+        <segue reference="gOf-VH-GBC"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -20,7 +20,7 @@ class IncomeScreenViewController: UIViewController, UITextViewDelegate {
     
     
     @IBAction func salaryButtonPressed(_ sender: Any) {
-        TempData.incomeType = CustomIncomeType.salary.getType()
+        TempData.itemCategory = Category.salary.name
         
         for button in buttons {
             if button == salaryButton {
@@ -32,7 +32,7 @@ class IncomeScreenViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func donationButtonPressed(_ sender: Any) {
-        TempData.incomeType = CustomIncomeType.donation.getType()
+        TempData.itemCategory = Category.donation.name
         
         for button in buttons {
             if button == donationButton {
@@ -43,7 +43,7 @@ class IncomeScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     @IBAction func othersButtonPressed(_ sender: Any) {
-        TempData.incomeType = CustomIncomeType.others.getType()
+        TempData.itemCategory = Category.others.name
         
         for button in buttons {
             if button == othersButton {

@@ -26,17 +26,18 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     private let viewModel = SummaryScreenViewModel()
     private var index:Int = 0
-    private var itemInfo:(ids:[UUID], dates:[String], amounts:[String], itemTypes:[String], expenseTypes:[String], incomeTypes:[String], descriptions:[String])?
+    private var itemInfo:(ids:[UUID], titles:[String] ,dates:[String], amounts:[String], itemTypes:[String], categories:[String], descriptions:[String])?
     
     private var ids:[UUID] = []
+    private var titles:[String] = []
     private var dates:[String] = []
     private var amounts:[String] = []
     private var itemTypes:[String] = [] // "expense", "income"
-    private var expenseTypes:[String] = []
-    private var incomeTypes:[String] = []
+    private var categories:[String] = []
     private var descriptions:[String] = []
-    private var expenses:[(id:UUID, date:String, amount:String, itemType:String, expenseType:String, incomeType:String, description:String)] = []
-    private var incomes:[(id:UUID, date:String, amount:String, itemType:String, expenseType:String, incomeType:String, description:String)] = []
+    
+    private var expenses:[(id:UUID, title:String, date:String, amount:String, itemType:String, category:String, description:String)] = []
+    private var incomes:[(id:UUID, title:String, date:String, amount:String, itemType:String, category:String, description:String)] = []
     
     
     private (set) var now = Date()
@@ -57,9 +58,7 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     
-    
-    
-   // private var itemViewModel = ItemViewModel()
+
     //define a data structure to track when a section is open or close
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +68,6 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         addSection()
         updateChart()
-//        chartRecord.updateDataForChart(dates: dates, amounts: amounts, itemTypes: itemTypes)
         
         tomorrow = now + 3600*24
         let formatter = DateFormatter()
@@ -103,11 +101,11 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
         itemInfo = viewModel.getItemDataFromCoreData()
         
         ids = itemInfo!.ids
+        titles = itemInfo!.titles
         dates = itemInfo!.dates
         amounts = itemInfo!.amounts
         itemTypes = itemInfo!.itemTypes
-        expenseTypes = itemInfo!.expenseTypes
-        incomeTypes = itemInfo!.incomeTypes
+        categories = itemInfo!.categories
         descriptions = itemInfo!.descriptions
     }
     
@@ -115,11 +113,9 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
         print(ids.count)
         for index in 0...ids.count-1 {
             if itemTypes[index] == "income" {
-                incomes.append((ids[index], dates[index], amounts[index], itemTypes[index], expenseTypes[index],
-                                incomeTypes[index], descriptions[index]))
+                incomes.append((ids[index], titles[index], dates[index], amounts[index], itemTypes[index], categories[index], descriptions[index]))
             } else if itemTypes[index] == "expense" {
-                expenses.append((ids[index], dates[index], amounts[index], itemTypes[index], expenseTypes[index],
-                                 incomeTypes[index], descriptions[index]))
+                expenses.append((ids[index], titles[index], dates[index], amounts[index], itemTypes[index], categories[index], descriptions[index]))
             }
         }
     }
@@ -293,7 +289,7 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenseCell", for: indexPath)
         let imageView = cell.viewWithTag(1000) as? UIImageView
-        let itemDescription = cell.viewWithTag(1001) as? UILabel
+        let itemTitle = cell.viewWithTag(1001) as? UILabel
         let itemAmount = cell.viewWithTag(1002) as? UILabel
         let itemDate = cell.viewWithTag(1003) as? UILabel
         
@@ -302,17 +298,15 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
         
       
         
-        let finance3 = indexPath.section == 0 ? getExpenseRecord(index: indexPath.row) : getIncomeRecord(index: indexPath.row)
-        
-        //let curr
-        //         Configure the cell...
-        if let imageView = imageView, let itemDescription = itemDescription, let itemDate = itemDate,let itemAmount = itemAmount  {// are you really you and not optional zombie (.)_(.)
-            //let currentItem = finance
-            let currentItem = finance3
-            imageView.image = currentItem.image
-            itemDescription.text = currentItem.description
-            itemAmount.text = currentItem.amount
-            itemDate.text = currentItem.date
+        let records = indexPath.section == 0 ? getExpenseRecord(index: indexPath.row) : getIncomeRecord(index: indexPath.row)
+     
+        //  Configure the cell...
+        if let imageView = imageView, let itemTitle = itemTitle, let itemDate = itemDate,let itemAmount = itemAmount  {
+    
+            imageView.image = records.image
+            itemTitle.text = records.title
+            itemAmount.text = records.amount
+            itemDate.text = records.date
         }
         
         return cell
@@ -341,7 +335,7 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let selectedRow = self.tableView.indexPathForSelectedRow else {return}
         //n set the informtation to where are you going
-        let destination = segue.destination as? ItemDetailViewController
+        let destination = segue.destination as? ItemDescriptionScreenViewController
         // have access to selectedCharacter in LKDetailViewController
         let selectedColumn = selectedRow.section
         
@@ -439,74 +433,57 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     
-    func getExpenseRecord(index: Int) -> (description:String,amount:String,date:String,image:UIImage?) {
-        
-        
-        let description = expenses[index].description
+    private func getExpenseRecord(index: Int) -> (title:String, date:String, amount:String , category:String, description:String, image:UIImage?) {
+        let title = expenses[index].title
         let amount = expenses[index].amount
-        //let amountFloat = Float(amount) ?? 0
         let date = expenses[index].date
-        let category = expenses[index].expenseType
-        
+        let category = expenses[index].category
+        let description = expenses[index].description
         let image:UIImage
-        //let category = info.itemTypes[index]
-        //var image:UIImage
+       
         switch category {
         case "food":
-            image = UIImage(named: "food-icon")!
+            image = Category.food.image
         case "drink":
-            image = UIImage(named: "drink-icon")!
+            image = Category.drink.image
         case "medication":
-            image = UIImage(named: "medication-icon")!
+            image = Category.medication.image
         case "education":
-            image = UIImage(named: "education-icon")!
+            image = Category.education.image
         case "transportation":
-            image = UIImage(named: "transportation-icon")!
+            image = Category.transportation.image
         case "rent":
-            image = UIImage(named: "rent-icon")!
+            image = Category.rent.image
         case "utilities":
-            image = UIImage(named: "utilites-icon")!
+            image = Category.utilities.image
         case "others":
-            image = UIImage(named: "others-icon")!
+            image = Category.others.image
         default:
-            image = UIImage(named: "no-image")!
+            image = Category.none.image
         }
         
-        
-        return (description,amount,date,image)
-        
-        
-        
+        return (title: title, date: date, amount: amount, category: category, description: description, image: image)
     }
-    func getIncomeRecord(index: Int) -> (description:String,amount:String,date:String,image:UIImage?) {
-        
-        
-        let description = incomes[index].description
+    private func getIncomeRecord(index: Int) -> (title:String, date:String, amount: String, category:String, description:String, image:UIImage?) {
+        let title = incomes[index].title
         let amount = incomes[index].amount
-        //let amountFloat = Float(amount) ?? 0
         let date = incomes[index].date
-        let category = incomes[index].incomeType
-        
+        let category = incomes[index].category
+        let description = incomes[index].description
         let image:UIImage
-        //let category = info.itemTypes[index]
-        //var image:UIImage
+    
         switch category {
-        case "salary":
-            image = UIImage(named: "salary-icon")!
-        case "donation":
-            image = UIImage(named: "donation-icon")!
-        case "others":
-            image = UIImage(named: "others-icon")!
+        case "Salary":
+            image = Category.salary.image
+        case "Donation":
+            image = Category.donation.image
+        case "Others":
+            image = Category.others.image
         default:
-            image = UIImage(named: "icon-2")!
+            image = Category.none.image
         }
-        //        case .salary: return "salary-icon"
-        //        case .donation: return "donation-icon"
-        //        case .others: return "others-icon"
-        //        case .none: return "No image"
         
-        
-        return (description,amount,date,image)
+        return (title: title, date: date, amount: amount, category: category, description: description, image: image)
     }
     
 }

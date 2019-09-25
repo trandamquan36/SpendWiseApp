@@ -12,19 +12,18 @@ class ItemDetailScreenViewController: UIViewController {
     private let alert = Alert()
     private let viewModel = ItemDetailScreenViewModel()
     @IBAction private func backBarButtonPressed(_ sender: Any) {
-        TempData.itemType = CustomItemType.none.getType()
+        TempData.itemType = CustomItemType.none.name
         TempData.resetItemData()
         
         performSegue(withIdentifier: "ItemDetailScreen_SummaryScreen", sender: self)
     }
     @IBAction private func doneBarButtonPressed(_ sender: UIBarButtonItem) {
-        if (TempData.expenseType != CustomExpenseType.none.getType() || TempData.incomeType != CustomIncomeType.none.getType()) && TempData.validAmount == true {
+        if TempData.itemCategory != Category.none.name && TempData.validAmount == true {
             let id = viewModel.generateID()
             
-            print("\(TempData.usernameInput), \(id), \(TempData.itemDate), \(TempData.itemAmount), \(TempData.itemType), \(TempData.expenseType), \(TempData.incomeType), \(TempData.itemDescription)")
-            viewModel.saveDataToCoreData(id: id, date: TempData.itemDate, amount: TempData.itemAmount, itemType: TempData.itemType, expenseType: TempData.expenseType, incomeType: TempData.incomeType, description: TempData.itemDescription)
+            viewModel.saveDataToCoreData(id: id, title: TempData.itemTitle, date: TempData.itemDate, amount: TempData.itemAmount, itemType: TempData.itemType, category: TempData.itemCategory, description: TempData.itemDescription)
 
-            TempData.itemType = CustomItemType.none.getType()
+            TempData.itemType = CustomItemType.none.name
             TempData.resetItemData()
             
             performSegue(withIdentifier: "ItemDetailScreen_SummaryScreen", sender: self)
@@ -38,12 +37,12 @@ class ItemDetailScreenViewController: UIViewController {
         if sender.selectedSegmentIndex == 0 {
             expenseView.alpha = 1
             incomeView.alpha = 0
-            TempData.itemType = CustomItemType.expense.getType()
+            TempData.itemType = CustomItemType.expense.name
             TempData.resetItemData()
         } else {
             expenseView.alpha = 0
             incomeView.alpha = 1
-            TempData.itemType = CustomItemType.income.getType()
+            TempData.itemType = CustomItemType.income.name
             TempData.resetItemData()
         }
         
@@ -53,7 +52,7 @@ class ItemDetailScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        TempData.itemType = CustomItemType.expense.getType()
+        TempData.itemType = CustomItemType.expense.name
         // Do any additional setup after loading the view.
 //        if TempData.editMode == true {
 //            segmentedControl.setEnabled(false, forSegmentAt: 0)

@@ -137,6 +137,13 @@ class FirstSignupScreenViewController: UIViewController, UITextFieldDelegate  {
             let confirmPassword = confirmPasswordTextField.text
             else { return }
         
+        
+        print("ValidName: \(validName)")
+        print("ValidUsername: \(validUsername)")
+        print("ValidPassword: \(validPassword)")
+        print("ValidConfirmPassword: \(validConfirmPassword)")
+        
+        
         if validName == true && validUsername == true && validPassword == true && validConfirmPassword == true {
          
             // save temporary data

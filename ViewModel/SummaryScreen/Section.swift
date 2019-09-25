@@ -10,9 +10,9 @@
 import Foundation
 struct Section {
     var type:String!
-    var items:[(id:UUID, date:String, amount:String, itemType:String, expenseType:String, incomeType:String, description:String)]!
+    var items:[(id:UUID, title:String, date:String, amount:String, itemType:String, category:String, description:String)]!
     var expanded:Bool!
-    init(type:String, items:[(id:UUID, date:String, amount:String, itemType:String, expenseType:String, incomeType:String, description:String)],expanded:Bool) {
+    init(type:String, items:[(id:UUID, title:String, date:String, amount:String, itemType:String, category:String , description:String)],expanded:Bool) {
         self.type = type
         self.items = items
         self.expanded = expanded

@@ -62,19 +62,21 @@ struct LoginScreenViewModel {
         CoreDataManager.saveContext()
     }
     
-    func createDummyItemCoreData(id:UUID, date:String, amount:String, type:String, expenseType:String, incomeType:String, description:String) {
+    func createDummyItemCoreData(id:UUID, title:String, date:String, amount:String, type:String,  category:String, description:String) {
       
+        let user:User = NSEntityDescription.insertNewObject(forEntityName: "User", into: CoreDataManager.persistentContainer.viewContext) as! User
         
         let item:Item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: CoreDataManager.persistentContainer.viewContext) as! Item
         
         item.id = id
+        item.title = title
         item.date = date
         item.amount = amount
         item.type = type
-        item.expenseType = expenseType
-        item.incomeType = incomeType
+        item.category = category
         item.detail = description
         
+        user.addToItems(item)
         CoreDataManager.saveContext()
     }
 }

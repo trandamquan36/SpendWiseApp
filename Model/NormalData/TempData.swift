@@ -24,11 +24,12 @@ struct TempData {
     static var facialRecognitionAdded:Bool = false
     
     static var counter:Int = 0
+    
+    static var itemTitle:String = ""
     static var itemDate:String = ""
     static var itemAmount:String = ""
-    static var itemType:String = CustomItemType.none.getType()
-    static var expenseType:String = CustomExpenseType.none.getType()
-    static var incomeType:String = CustomIncomeType.none.getType()
+    static var itemType:String = CustomItemType.none.name
+    static var itemCategory:String = Category.none.name
     static var itemDescription:String = ""
     
     static var validAmount:Bool = false
@@ -47,12 +48,12 @@ struct TempData {
     }
     
     static func resetItemData() {
+        itemTitle = ""
         itemDate = ""
         itemAmount = ""
         itemDescription = ""
-        itemType = CustomItemType.none.getType()
-        expenseType = CustomExpenseType.none.getType()
-        incomeType = CustomIncomeType.none.getType()
+        itemType = CustomItemType.none.name
+        itemCategory = Category.none.name
         
         validAmount = false
     }
