@@ -1,0 +1,6 @@
+framework module Pods_SpendWiseApp {
+  umbrella header "Pods-SpendWiseApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
