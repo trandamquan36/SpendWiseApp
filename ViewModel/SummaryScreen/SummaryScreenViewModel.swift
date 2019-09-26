@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 struct SummaryScreenViewModel {
+    private let dataManager = CoreDataManager.shared
     
     private (set) var now = Date()
     
@@ -28,34 +29,18 @@ struct SummaryScreenViewModel {
         
     }
     
-    func getItemDataFromCoreData() ->(ids:[UUID], titles:[String], dates:[String], amounts:[String], itemTypes:[String], categories:[String], descriptions:[String]){
+    func retrieveItemInfo(username: String) ->(ids:[UUID], titles:[String], dates:[String], amounts:[String], types:[String], categories:[String], descriptions:[String]){
         
-        var ids:[UUID] = []
-        var titles:[String] = []
-        var dates:[String] = []
-        var amounts:[String] = []
-        var itemTypes:[String] = []
-        var categories:[String] = []
-        var descriptions:[String] = []
+        let itemInfo = dataManager.retrieveNSItems(username: username)
         
-        let fetchRequest:NSFetchRequest<Item> = Item.fetchRequest()
-        
-        do {
-            let searchResults = try CoreDataManager.getContext().fetch(fetchRequest)
-            
-            for result in searchResults as [Item] {
-                ids.append(result.id!)
-                titles.append(result.title!)
-                dates.append(result.date!)
-                amounts.append(result.amount!)
-                itemTypes.append(result.type!)
-                categories.append(result.category!)
-                descriptions.append(result.detail!)
-            }
-        } catch {
-            print("Error: \(error)")
-        }
-        
-        return (ids:ids, titles: titles, dates:dates, amounts:amounts, itemTypes:itemTypes, categories: categories, descriptions:descriptions)
+        let ids = itemInfo.ids
+        let titles = itemInfo.titles
+        let dates = itemInfo.dates
+        let amounts = itemInfo.amounts
+        let types = itemInfo.types
+        let categories = itemInfo.categories
+        let descriptions = itemInfo.descriptions
+    
+        return (ids:ids, titles: titles, dates:dates, amounts:amounts, types:types, categories: categories, descriptions:descriptions)
     }
 }

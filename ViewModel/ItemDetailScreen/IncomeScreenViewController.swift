@@ -71,7 +71,7 @@ class IncomeScreenViewController: UIViewController, UITextViewDelegate {
     }
     
     private lazy var buttons:[DesignableButton] = [salaryButton, donationButton, othersButton]
-    private let viewModel = ItemDetailScreenViewModel()
+    private let viewModel = AddItemScreenViewModel()
     private let validation = Validation()
     private var currentDate:String = ""
     

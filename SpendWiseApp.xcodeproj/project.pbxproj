@@ -22,7 +22,7 @@
 		6F074CFA232DA6F200669DA0 /* ThirdForgotPasswordScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F074CF9232DA6F200669DA0 /* ThirdForgotPasswordScreenViewController.swift */; };
 		6F074CFC232DA70600669DA0 /* FirstForgotPasswordScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F074CFB232DA70600669DA0 /* FirstForgotPasswordScreenViewModel.swift */; };
 		6F07E21F2336037B00B3DDC6 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F07E21E2336037B00B3DDC6 /* Animation.swift */; };
-		6F07E2212336042B00B3DDC6 /* ItemDetailScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F07E2202336042B00B3DDC6 /* ItemDetailScreenViewController.swift */; };
+		6F07E2212336042B00B3DDC6 /* AddItemScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F07E2202336042B00B3DDC6 /* AddItemScreenViewController.swift */; };
 		6F098A1A2336544A006D01AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F098A192336544A006D01AF /* Main.storyboard */; };
 		6F098A262336B83B006D01AF /* SecondEditPinScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F098A252336B83B006D01AF /* SecondEditPinScreenViewController.swift */; };
 		6F098A282336B867006D01AF /* SecondEditPinScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F098A272336B867006D01AF /* SecondEditPinScreenViewModel.swift */; };
@@ -51,7 +51,7 @@
 		6F4CA2E9233387D400FCC561 /* SpendWiseAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4CA2E8233387D400FCC561 /* SpendWiseAppUITests.swift */; };
 		6F8933AE233604CC001B915F /* ExpenseScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933AD233604CC001B915F /* ExpenseScreenViewController.swift */; };
 		6F8933B0233604EB001B915F /* IncomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933AF233604EB001B915F /* IncomeScreenViewController.swift */; };
-		6F8933B2233604FA001B915F /* ItemDetailScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933B1233604FA001B915F /* ItemDetailScreenViewModel.swift */; };
+		6F8933B2233604FA001B915F /* AddItemScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933B1233604FA001B915F /* AddItemScreenViewModel.swift */; };
 		6F8933B423360510001B915F /* MenuScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933B323360510001B915F /* MenuScreenViewController.swift */; };
 		6F8933B623360520001B915F /* MenuScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933B523360520001B915F /* MenuScreenViewModel.swift */; };
 		6F8933B823360534001B915F /* SummaryScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8933B723360534001B915F /* SummaryScreenViewModel.swift */; };
@@ -117,7 +117,7 @@
 		6F074CF9232DA6F200669DA0 /* ThirdForgotPasswordScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdForgotPasswordScreenViewController.swift; sourceTree = "<group>"; };
 		6F074CFB232DA70600669DA0 /* FirstForgotPasswordScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstForgotPasswordScreenViewModel.swift; sourceTree = "<group>"; };
 		6F07E21E2336037B00B3DDC6 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
-		6F07E2202336042B00B3DDC6 /* ItemDetailScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailScreenViewController.swift; sourceTree = "<group>"; };
+		6F07E2202336042B00B3DDC6 /* AddItemScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemScreenViewController.swift; sourceTree = "<group>"; };
 		6F098A192336544A006D01AF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		6F098A252336B83B006D01AF /* SecondEditPinScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondEditPinScreenViewController.swift; sourceTree = "<group>"; };
 		6F098A272336B867006D01AF /* SecondEditPinScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondEditPinScreenViewModel.swift; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 		6F4CA2EA233387D400FCC561 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F8933AD233604CC001B915F /* ExpenseScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseScreenViewController.swift; sourceTree = "<group>"; };
 		6F8933AF233604EB001B915F /* IncomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeScreenViewController.swift; sourceTree = "<group>"; };
-		6F8933B1233604FA001B915F /* ItemDetailScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailScreenViewModel.swift; sourceTree = "<group>"; };
+		6F8933B1233604FA001B915F /* AddItemScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemScreenViewModel.swift; sourceTree = "<group>"; };
 		6F8933B323360510001B915F /* MenuScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreenViewController.swift; sourceTree = "<group>"; };
 		6F8933B523360520001B915F /* MenuScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScreenViewModel.swift; sourceTree = "<group>"; };
 		6F8933B723360534001B915F /* SummaryScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScreenViewModel.swift; sourceTree = "<group>"; };
@@ -287,8 +287,8 @@
 		6F098A232336B721006D01AF /* FirstEditPinScreen */ = {
 			isa = PBXGroup;
 			children = (
-				6F8933D9233636B4001B915F /* FirstEditPinScreenViewModel.swift */,
 				6F8933D7233636A9001B915F /* FirstEditPinScreenViewController.swift */,
+				6F8933D9233636B4001B915F /* FirstEditPinScreenViewModel.swift */,
 			);
 			path = FirstEditPinScreen;
 			sourceTree = "<group>";
@@ -499,8 +499,8 @@
 		6F8933CE233635D9001B915F /* EditProfileScreen */ = {
 			isa = PBXGroup;
 			children = (
-				6F8933DB233636E5001B915F /* EditProfileScreenViewModel.swift */,
 				6F8933DD233636FA001B915F /* EditProfileScreenViewController.swift */,
+				6F8933DB233636E5001B915F /* EditProfileScreenViewModel.swift */,
 			);
 			path = EditProfileScreen;
 			sourceTree = "<group>";
@@ -508,8 +508,8 @@
 		6F8933D123363634001B915F /* EditPinScreen */ = {
 			isa = PBXGroup;
 			children = (
-				6F098A242336B76E006D01AF /* SecondEditPinScreen */,
 				6F098A232336B721006D01AF /* FirstEditPinScreen */,
+				6F098A242336B76E006D01AF /* SecondEditPinScreen */,
 			);
 			path = EditPinScreen;
 			sourceTree = "<group>";
@@ -517,8 +517,8 @@
 		6F8933D223363649001B915F /* EditPasswordScreen */ = {
 			isa = PBXGroup;
 			children = (
-				6F8933E0233637B4001B915F /* SecondEditPasswordScreen */,
 				6F8933DF233637A8001B915F /* FirstEditPasswordScreen */,
+				6F8933E0233637B4001B915F /* SecondEditPasswordScreen */,
 			);
 			path = EditPasswordScreen;
 			sourceTree = "<group>";
@@ -526,8 +526,8 @@
 		6F8933DF233637A8001B915F /* FirstEditPasswordScreen */ = {
 			isa = PBXGroup;
 			children = (
-				6F8933D323363668001B915F /* FirstEditPasswordScreenViewModel.swift */,
 				6F8933D52336369D001B915F /* FirstEditPasswordScreenViewController.swift */,
+				6F8933D323363668001B915F /* FirstEditPasswordScreenViewModel.swift */,
 			);
 			path = FirstEditPasswordScreen;
 			sourceTree = "<group>";
@@ -545,6 +545,7 @@
 			isa = PBXGroup;
 			children = (
 				6FFAF93F2333B43900CC89F6 /* SettingsTableViewController2.swift */,
+				6F8933D123363634001B915F /* EditPinScreen */,
 				6F8933D223363649001B915F /* EditPasswordScreen */,
 				6F8933CE233635D9001B915F /* EditProfileScreen */,
 			);
@@ -554,7 +555,6 @@
 		6FCFB3A12324D487009D5409 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				6F8933D123363634001B915F /* EditPinScreen */,
 				6F098A192336544A006D01AF /* Main.storyboard */,
 				6F0BA40E231E5A6400470F22 /* LaunchScreen.storyboard */,
 			);
@@ -598,10 +598,10 @@
 		6FFAF9552333B7F500CC89F6 /* ItemDetailScreen */ = {
 			isa = PBXGroup;
 			children = (
-				6F07E2202336042B00B3DDC6 /* ItemDetailScreenViewController.swift */,
+				6F07E2202336042B00B3DDC6 /* AddItemScreenViewController.swift */,
 				6F8933AD233604CC001B915F /* ExpenseScreenViewController.swift */,
 				6F8933AF233604EB001B915F /* IncomeScreenViewController.swift */,
-				6F8933B1233604FA001B915F /* ItemDetailScreenViewModel.swift */,
+				6F8933B1233604FA001B915F /* AddItemScreenViewModel.swift */,
 			);
 			path = ItemDetailScreen;
 			sourceTree = "<group>";
@@ -839,7 +839,7 @@
 				6F1BF910232101F4004DECF4 /* UIExtentions.swift in Sources */,
 				6F8933DC233636E5001B915F /* EditProfileScreenViewModel.swift in Sources */,
 				6F074CDA232B7C2500669DA0 /* FirstSignupScreenViewController.swift in Sources */,
-				6F07E2212336042B00B3DDC6 /* ItemDetailScreenViewController.swift in Sources */,
+				6F07E2212336042B00B3DDC6 /* AddItemScreenViewController.swift in Sources */,
 				6F074CEB232D645700669DA0 /* CameraScreenViewModel.swift in Sources */,
 				6F8933B623360520001B915F /* MenuScreenViewModel.swift in Sources */,
 				6F074CE6232D40A100669DA0 /* ThirdSignupScreenViewController.swift in Sources */,
@@ -850,7 +850,7 @@
 				6FFAF94A2333B43900CC89F6 /* ItemDescriptionScreenViewController.swift in Sources */,
 				6F074CE9232D643E00669DA0 /* CameraScreenViewController.swift in Sources */,
 				6F0BA3CE231CFBE800470F22 /* AppDelegate.swift in Sources */,
-				6F8933B2233604FA001B915F /* ItemDetailScreenViewModel.swift in Sources */,
+				6F8933B2233604FA001B915F /* AddItemScreenViewModel.swift in Sources */,
 				6F098A282336B867006D01AF /* SecondEditPinScreenViewModel.swift in Sources */,
 				6F00DA10232F783400C81A11 /* User+CoreDataClass.swift in Sources */,
 				6F8933B823360534001B915F /* SummaryScreenViewModel.swift in Sources */,

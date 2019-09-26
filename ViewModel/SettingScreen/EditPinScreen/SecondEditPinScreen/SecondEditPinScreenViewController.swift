@@ -1,24 +1,25 @@
 //
-//  EditPinScreenViewController.swift
+//  SecondEditPinViewController.swift
 //  SpendWiseApp
 //
-//  Created by Quan Tran on 21/9/19.
+//  Created by Quan Tran on 22/9/19.
 //  Copyright © 2019 Quan Tran. All rights reserved.
 //
 
 import UIKit
 
-class FirstEditPinScreenViewController: UIViewController {
-    private let viewModel = FirstEditPinScreenViewModel()
-    private let alert = Alert()
-    //    private var userPinNumber:(firstPin:String, secondPin:String, thirdPin:String, fourthPin:String)?
+class SecondEditPinViewController: UIViewController {
+    private var alert = Alert()
+    private var viewModel = SecondEditPinScreenViewModel()
     private var textFields:[DesignableTextField] = []
-    private var pinNumbers:[String] = []
-    private var pinsInDatabase:[String] = []
+    
     
     @IBOutlet weak var firstPin: DesignableTextField!
+    
     @IBOutlet weak var secondPin: DesignableTextField!
+    
     @IBOutlet weak var thirdPin: DesignableTextField!
+    
     @IBOutlet weak var fourthPin: DesignableTextField!
     
     
@@ -26,30 +27,33 @@ class FirstEditPinScreenViewController: UIViewController {
         secondPin.becomeFirstResponder()
     }
     
+    
     @IBAction func secondPinDidChange(_ sender: DesignableTextField) {
         thirdPin.becomeFirstResponder()
     }
+    
     
     @IBAction func thirdPinDidChange(_ sender: DesignableTextField) {
         fourthPin.becomeFirstResponder()
     }
     
+    
     @IBAction func fourthPinDidChange(_ sender: DesignableTextField) {
         fourthPin.resignFirstResponder()
     }
     
-    @IBAction func checkBtn(_ sender: Any) {
+    @IBAction func doneBtn(_ sender: DesignableButton) {
         guard let firstPIN = firstPin.text, let secondPIN = secondPin.text,
             let thirdPIN = thirdPin.text, let fourthPIN = fourthPin.text
             else { return }
         
         if !firstPIN.isEmpty && !secondPIN.isEmpty && !thirdPIN.isEmpty && !fourthPIN.isEmpty {
+            let username = viewModel.retrieveTempUsername()
+            
             let pinNumber = firstPIN + secondPIN + thirdPIN + fourthPIN
-            if checkPINNumber(pinNumber: pinNumber) == true {
-                performSegue(withIdentifier: "To Edit PIN Screen 2", sender: self)
-            } else {
-                alert.showWrongPinNumberAlert(on: self)
-            }
+            viewModel.updatePinNumber(username: username, pin: pinNumber)
+            //            TempData.facialRecognitionAdded = true
+            performSegue(withIdentifier: "to Setting View", sender: self)
         } else {
             alert.showWrongPinNumberAlert(on: self)
         }
@@ -63,25 +67,9 @@ class FirstEditPinScreenViewController: UIViewController {
         if checkAllEmptyInputs() == true {
             showKeyboard()
         }
+
         // Do any additional setup after loading the view.
     }
-    private func checkPINNumber(pinNumber:String) -> Bool {
-        var isSame:Bool = false
-        pinsInDatabase = viewModel.getPINFromCoreData()
-        
-        for pinInDatabase in pinsInDatabase {
-            print(pinInDatabase)
-            if  pinNumber == pinInDatabase {
-                isSame = true
-                break
-            } else {
-                isSame = false
-            }
-        }
-        return isSame
-    }
-    
-    // Hide keyboard when user touches anywhere in UIViewController
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
@@ -97,8 +85,8 @@ class FirstEditPinScreenViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.firstPin.becomeFirstResponder()
         }
-        
     }
+    
     private func checkAllEmptyInputs() -> Bool {
         var isEmpty:Bool = false
         for textField in textFields {
@@ -111,6 +99,7 @@ class FirstEditPinScreenViewController: UIViewController {
         }
         return isEmpty
     }
+    
 
     /*
     // MARK: - Navigation

@@ -8,15 +8,172 @@
 
 import Foundation
 import CoreData
+import UIKit
+
 
 class CoreDataManager {
-    private init() {
+    
+    static let shared = CoreDataManager()
+    
+    func addNSUser(name:String, username:String, password:String, pinNumber:String){
+        let user:User = NSEntityDescription.insertNewObject(forEntityName: "User", into: persistentContainer.viewContext) as! User
+        
+        user.name = name
+        user.username = username
+        user.password = password
+        user.pinNumber = pinNumber
+        
+        saveContext()
+    }
+    
+    func addNSItem(id:UUID, title:String, date:String, amount:String, type:String, category:String, description: String, user:String) {
+        
+        let item:Item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: persistentContainer.viewContext) as! Item
+        
+        item.id = id
+        item.title = title
+        item.date = date
+        item.amount = amount
+        item.type = type
+        item.category = category
+        item.detail = description
+        item.user = user
+        
+        saveContext()
+    }
+    
+    func retrieveNSUsers() -> (names:[String], usernames:[String], passwords:[String], pins:[String] ) {
+        var names:[String] = []
+        var usernames:[String] = []
+        var passwords:[String] = []
+        var pins:[String] = []
+        
+        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
+        
+        do {
+            let searchResults = try persistentContainer.viewContext.fetch(fetchRequest)
+            
+            for result in searchResults as [User] {
+                names.append(result.name!)
+                usernames.append(result.username!)
+                passwords.append(result.password!)
+                pins.append(result.pinNumber!)
+            }
+        } catch {
+            print("Error: \(error)")
+        }
+    
+        return (names: names, usernames: usernames, passwords: passwords, pins: pins)
+    }
+    
+    func retrieveNSItems(username: String) -> (ids:[UUID], titles:[String], dates:[String], amounts:[String], types:[String], categories:[String], descriptions:[String], users:[String]) {
+        var ids:[UUID] = []
+        var titles:[String] = []
+        var dates:[String] = []
+        var amounts:[String] = []
+        var types:[String] = []
+        var categories:[String] = []
+        var descriptions:[String] = []
+        var users:[String] = []
+        
+        let fetchRequest:NSFetchRequest<Item> = Item.fetchRequest()
+        
+        do {
+            let searchResults = try persistentContainer.viewContext.fetch(fetchRequest)
+            
+            for result in searchResults as [Item] {
+                if result.user! == username {
+                    ids.append(result.id!)
+                    titles.append(result.title!)
+                    dates.append(result.date!)
+                    amounts.append(result.amount!)
+                    types.append(result.type!)
+                    categories.append(result.category!)
+                    descriptions.append(result.detail!)
+                    users.append(result.user!)
+                }
+            }
+        } catch {
+            print("Error: \(error)")
+        }
+        
+        return (ids:ids, titles: titles, dates:dates, amounts:amounts, types:types, categories: categories, descriptions:descriptions, users:users)
         
     }
     
+    func updateNSUserPassword(username:String, updateInfo:String) {
+        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
+        
+        do {
+            let searchResults = try persistentContainer.viewContext.fetch(fetchRequest)
+            
+            for result in searchResults as [User] {
+                
+                if username == result.username {
+                    result.password = updateInfo
+                    break
+                }
+            }
+        } catch {
+            print("Error: \(error)")
+        }
+        
+        saveContext()
+    }
+    
+    func updateNSUserName(username:String, updateInfo:String) {
+        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
+        
+        do {
+            let searchResults = try persistentContainer.viewContext.fetch(fetchRequest)
+            
+            for result in searchResults as [User] {
+                
+                if username == result.username {
+                    result.name = updateInfo
+                    break
+                }
+            }
+        } catch {
+            print("Error: \(error)")
+        }
+        
+        saveContext()
+    }
+    
+    func updateNSUserPinNumber(username:String, updateInfo:String) {
+        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
+        
+        do {
+            let searchResults = try persistentContainer.viewContext.fetch(fetchRequest)
+            
+            for result in searchResults as [User] {
+                
+                if username == result.username {
+                    result.pinNumber = updateInfo
+                    break
+                }
+            }
+        } catch {
+            print("Error: \(error)")
+        }
+        
+        saveContext()
+    }
+    
+    func updateNSItemInfo() {
+        
+    }
+    
+    func deleteNSItem() {
+        
+    }
+    
+    
+    
     // MARK: - Core Data stack
     
-    static var persistentContainer: NSPersistentContainer = {
+    private var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
@@ -45,7 +202,7 @@ class CoreDataManager {
     
     // MARK: - Core Data Saving support
     
-    static func saveContext () {
+    private func saveContext() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -59,8 +216,6 @@ class CoreDataManager {
         }
     }
     
-    class func getContext() -> NSManagedObjectContext{
-        return persistentContainer.viewContext
-    }
+  
     
 }

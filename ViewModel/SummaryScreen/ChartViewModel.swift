@@ -76,7 +76,7 @@ struct ChartViewModel {
         return BarChartData(dataSet: chartDataSet)
     }
     
-    mutating func updateDataForChart(dates: [String], amounts: [String], itemTypes: [String]) {
+    mutating func updateDataForChart(dates: [String], amounts: [String], types: [String]) {
         var totalExpense: Double = 0.0
         var totalIncome: Double = 0.0
         
@@ -86,11 +86,11 @@ struct ChartViewModel {
         
         for date in dates {
             for i in 0...dates.count - 1 {
-                if itemTypes[i] == CustomItemType.expense.name{
+                if types[i] == CustomItemType.expense.name{
                     if let instantAmount = Double(amounts[i]) {
                         totalExpense += instantAmount
                     }
-                } else if itemTypes[i] == CustomItemType.income.name {
+                } else if types[i] == CustomItemType.income.name {
                     if let instantAmount = Double(amounts[i]) {
                         totalIncome += instantAmount
                     }

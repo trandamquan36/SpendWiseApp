@@ -1,5 +1,5 @@
 //
-//  EditPasswordScreenViewModel.swift
+//  EditPinScreenViewModel.swift
 //  SpendWiseApp
 //
 //  Created by Quan Tran on 21/9/19.
@@ -8,13 +8,13 @@
 
 import Foundation
 import CoreData
-struct FirstEditPasswordScreenViewModel {
+struct FirstEditPinScreenViewModel {
     private let dataManager = CoreDataManager.shared
     
-    func retrievePassword() -> [String]{
+    func retrievePinNumbers() -> [String]{
         let userInfo = dataManager.retrieveNSUsers()
-        let passwords = userInfo.passwords
+        let pins = userInfo.pins
         
-        return passwords
+        return pins
     }
 }

@@ -57,7 +57,7 @@ class FirstForgotPasswordScreenViewController: UIViewController {
     }
     
     private func checkIfUsernameExists(entered:String) -> Bool {
-        usernames = viewModel.getUsernameFromCoreData()
+        usernames = viewModel.retrieveUsernames()
         var isExist:Bool = false
         for username in usernames {
             if entered == username {

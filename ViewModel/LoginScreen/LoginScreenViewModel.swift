@@ -10,28 +10,27 @@ import Foundation
 import CoreData
 
 struct LoginScreenViewModel {
-    func getDataFromCoreData() ->(names:[String], usernames:[String], passwords:[String], pins:[String]){
-        var names:[String] = []
-        var usernames:[String] = []
-        var passwords:[String] = []
-        var pins:[String] = []
-        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
+    private let dataManager = CoreDataManager.shared
+    
+    func retrieveUserInfo() -> (usernames:[String], passwords:[String]) {
         
-        do {
-            let searchResults = try CoreDataManager.getContext().fetch(fetchRequest)
-            
-            for result in searchResults as [User] {
-                names.append(result.name!)
-                usernames.append(result.username!)
-                passwords.append(result.password!)
-                pins.append(result.pinNumber!)
-                print(result.username!)
-            }
-        } catch {
-            print("Error: \(error)")
-        }
+        let userInfo = dataManager.retrieveNSUsers()
         
-        return (names: names, usernames: usernames, passwords: passwords, pins: pins)
+        let usernames = userInfo.usernames
+        let passwords = userInfo.passwords
+        
+        return (usernames: usernames, passwords: passwords)
+    }
+    
+    func addUser(name:String, username:String, password:String, pinNumber:String) {
+        dataManager.addNSUser(name: name, username: username, password: password, pinNumber: pinNumber)
+    }
+    
+    func addItem(id:UUID, title:String, date:String, amount:String, type:String,  category:String, description:String, user:String) {
+        dataManager.addNSItem(id: id, title: title, date: date,
+                              amount: amount, type: type,
+                              category: category, description: description,
+                              user: user)
     }
     
     func getCurrentDate() -> String {
@@ -48,35 +47,5 @@ struct LoginScreenViewModel {
         
         return id
     }
-    
-    
-    // create a dummy account for UITest
-    func createDummyUserCoreData(name:String, username:String, password:String, pinNumber:String ) {
-        let user:User = NSEntityDescription.insertNewObject(forEntityName: "User", into: CoreDataManager.persistentContainer.viewContext) as! User
-        
-        user.name = name
-        user.username = username
-        user.password = password
-        user.pinNumber = pinNumber
-        
-        CoreDataManager.saveContext()
-    }
-    
-    func createDummyItemCoreData(id:UUID, title:String, date:String, amount:String, type:String,  category:String, description:String) {
-      
-        let user:User = NSEntityDescription.insertNewObject(forEntityName: "User", into: CoreDataManager.persistentContainer.viewContext) as! User
-        
-        let item:Item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: CoreDataManager.persistentContainer.viewContext) as! Item
-        
-        item.id = id
-        item.title = title
-        item.date = date
-        item.amount = amount
-        item.type = type
-        item.category = category
-        item.detail = description
-        
-        user.addToItems(item)
-        CoreDataManager.saveContext()
-    }
+   
 }

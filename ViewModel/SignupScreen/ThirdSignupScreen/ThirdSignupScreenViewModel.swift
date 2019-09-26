@@ -10,6 +10,8 @@ import Foundation
 import CoreData
 
 struct ThirdSignupScreenViewModel {
+    private let dataManager = CoreDataManager.shared
+    
     func retrieveTempUserInfo() -> (name: String, username: String, password: String, confirmPassword: String){
         let name = TempData.nameInput
         let username = TempData.usernameInput
@@ -27,14 +29,7 @@ struct ThirdSignupScreenViewModel {
         return (firstPin: firstPin, secondPin: secondPin, thirdPin: thirdPin, fourthPin: fourthPin)
     }
     
-    func saveUserInfoIntoCoreData(name:String, username:String, password:String, pinNumber:String ) {
-        let user:User = NSEntityDescription.insertNewObject(forEntityName: "User", into: CoreDataManager.persistentContainer.viewContext) as! User
-        
-        user.name = name
-        user.username = username
-        user.password = password
-        user.pinNumber = pinNumber
-        
-        CoreDataManager.saveContext()
+    func addUser(name:String, username:String, password:String, pinNumber:String ) {
+        dataManager.addNSUser(name: name, username: username, password: password, pinNumber: pinNumber)
     }
 }

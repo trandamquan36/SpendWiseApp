@@ -139,9 +139,8 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-
     private lazy var buttons:[DesignableButton] = [foodButton, drinkButton, shopButton, medicationButton, educationButton, utilitiesButton, transportButton, rentButton, othersButton]
-    private let viewModel = ItemDetailScreenViewModel()
+    private let viewModel = AddItemScreenViewModel()
     private var currentDate:String = ""
     
     override func viewDidLoad() {

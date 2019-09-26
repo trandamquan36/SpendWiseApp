@@ -26,18 +26,19 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     private let viewModel = SummaryScreenViewModel()
     private var index:Int = 0
-    private var itemInfo:(ids:[UUID], titles:[String] ,dates:[String], amounts:[String], itemTypes:[String], categories:[String], descriptions:[String])?
+    private var itemInfo:(ids:[UUID], titles:[String] ,dates:[String], amounts:[String], types:[String], categories:[String], descriptions:[String])?
     
     private var ids:[UUID] = []
     private var titles:[String] = []
     private var dates:[String] = []
     private var amounts:[String] = []
-    private var itemTypes:[String] = [] // "expense", "income"
+    private var types:[String] = [] // "expense", "income"
     private var categories:[String] = []
     private var descriptions:[String] = []
     
-    private var expenses:[(id:UUID, title:String, date:String, amount:String, itemType:String, category:String, description:String)] = []
-    private var incomes:[(id:UUID, title:String, date:String, amount:String, itemType:String, category:String, description:String)] = []
+    
+    private var expenses:[(id:UUID, title:String, date:String, amount:String, type:String, category:String, description:String)] = []
+    private var incomes:[(id:UUID, title:String, date:String, amount:String, type:String, category:String, description:String)] = []
     
     
     private (set) var now = Date()
@@ -62,6 +63,7 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     //define a data structure to track when a section is open or close
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         retrieveDataFromDatabase()
         if ids.count > 1 {
             classifyItems()
@@ -90,21 +92,22 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
 //        let nextCustomDate = instant.getDate()
 //        chartRecord.update(at: self.getTomorrowDate(), income: 200, expense: 300)
         
-        chartRecord.updateDataForChart(dates: dates, amounts: amounts, itemTypes: itemTypes)
+        chartRecord.updateDataForChart(dates: dates, amounts: amounts, types: types)
         
         setChart(from: self.getCurrentDate(), to: self.getTomorrowDate())
+        
         
     }
     
     // Mark Core Data
     private func retrieveDataFromDatabase(){
-        itemInfo = viewModel.getItemDataFromCoreData()
+        itemInfo = viewModel.retrieveItemInfo(username: TempData.usernameInput)
         
         ids = itemInfo!.ids
         titles = itemInfo!.titles
         dates = itemInfo!.dates
         amounts = itemInfo!.amounts
-        itemTypes = itemInfo!.itemTypes
+        types = itemInfo!.types
         categories = itemInfo!.categories
         descriptions = itemInfo!.descriptions
     }
@@ -112,10 +115,10 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     private func classifyItems() {
         print(ids.count)
         for index in 0...ids.count-1 {
-            if itemTypes[index] == "income" {
-                incomes.append((ids[index], titles[index], dates[index], amounts[index], itemTypes[index], categories[index], descriptions[index]))
-            } else if itemTypes[index] == "expense" {
-                expenses.append((ids[index], titles[index], dates[index], amounts[index], itemTypes[index], categories[index], descriptions[index]))
+            if types[index] == CustomItemType.income.name {
+                incomes.append((ids[index], titles[index], dates[index], amounts[index], types[index], categories[index], descriptions[index]))
+            } else if types[index] == CustomItemType.expense.name  {
+                expenses.append((ids[index], titles[index], dates[index], amounts[index], types[index], categories[index], descriptions[index]))
             }
         }
     }
@@ -139,7 +142,7 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
         print(self.getTomorrowDate() )
         
         updateChart()
-        chartRecord.updateDataForChart(dates: dates, amounts: amounts, itemTypes: itemTypes)
+        chartRecord.updateDataForChart(dates: dates, amounts: amounts, types: types)
         setChart(from: self.getCurrentDate(), to:self.getTomorrowDate())
         
     }
@@ -155,7 +158,7 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
         print(self.getCurrentDate())
         
         updateChart()
-        chartRecord.updateDataForChart(dates: dates, amounts: amounts, itemTypes: itemTypes)
+        chartRecord.updateDataForChart(dates: dates, amounts: amounts, types: types)
         setChart(from: self.getCurrentDate(), to:self.getTomorrowDate())
     }
     
@@ -340,13 +343,13 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
         let selectedColumn = selectedRow.section
         
         if selectedColumn == 0 {
-            let  selectedItem = getExpenseRecord(index: selectedRow.row)
+            let selectedItem = getExpenseRecord(index: selectedRow.row)
             destination?.selectedItem = selectedItem
             
         }
         else
         {
-            let  selectedItem = getIncomeRecord(index: selectedRow.row)
+            let selectedItem = getIncomeRecord(index: selectedRow.row)
             destination?.selectedItem = selectedItem
         }
     }
@@ -442,21 +445,21 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
         let image:UIImage
        
         switch category {
-        case "food":
+        case "Food":
             image = Category.food.image
-        case "drink":
+        case "Drink":
             image = Category.drink.image
-        case "medication":
+        case "Medication":
             image = Category.medication.image
-        case "education":
+        case "Education":
             image = Category.education.image
-        case "transportation":
+        case "Transportation":
             image = Category.transportation.image
-        case "rent":
+        case "Rent":
             image = Category.rent.image
-        case "utilities":
+        case "Utilities":
             image = Category.utilities.image
-        case "others":
+        case "Others":
             image = Category.others.image
         default:
             image = Category.none.image

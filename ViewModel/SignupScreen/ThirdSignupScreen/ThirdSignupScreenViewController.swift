@@ -27,7 +27,7 @@ class ThirdSignupScreenViewController: UIViewController {
     @IBAction private func doneButton(_ sender: Any) {
         if TempData.facialRecognitionAdded == true {
             // save into core data
-            saveDataIntoCoreData()
+            addNewUser()
             //Remove temporary data and return to login screen
             TempData.resetUserData()
             TempData.facialRecognitionAdded = false
@@ -76,7 +76,7 @@ class ThirdSignupScreenViewController: UIViewController {
         label.textColor = Colors.getColor(redColor: 65.0, greenColor: 173.0, blueColor: 173.0, alpha: 100.0)
     }
     
-    private func saveDataIntoCoreData(){
+    private func addNewUser(){
         userInfo = viewModel.retrieveTempUserInfo()
         userPinNumber = viewModel.retrievePinNumber()
         
@@ -88,6 +88,6 @@ class ThirdSignupScreenViewController: UIViewController {
        
         let userPin:String = firstPin + secondPin + thirdPin + fourthPin
         
-        viewModel.saveUserInfoIntoCoreData(name: name, username: username, password: password, pinNumber: userPin)
+        viewModel.addUser(name: name, username: username, password: password, pinNumber: userPin)
     }
 }

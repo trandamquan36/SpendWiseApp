@@ -72,7 +72,7 @@ class SecondEditPasswordScreenViewController: UIViewController {
             username = viewModel.retrieveTempUsername()
             guard let newPassword = newPasswordTextField.text else { return }
             // update password
-            viewModel.updatePasswordInCoreData(username: username, password: newPassword)
+            viewModel.updatePassword(username: username, password: newPassword)
             performSegue(withIdentifier: "Setting Screen", sender: self)
 
             
@@ -106,7 +106,7 @@ class SecondEditPasswordScreenViewController: UIViewController {
     }
     
     private func checkSamePassword(newPassword:String) -> Bool {
-        passwords = viewModel.getPasswordFromCoreData()
+        passwords = viewModel.retrievePassword()
         var isSame:Bool = false
         
         if newPassword == passwords[TempData.counter] {

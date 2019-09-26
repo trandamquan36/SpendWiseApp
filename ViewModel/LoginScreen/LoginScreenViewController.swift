@@ -57,7 +57,7 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
     
     //LoginScreen variables
     private var textFields:[DesignableTextField] = []
-    private var userInfo:(names:[String], usernames:[String], passwords:[String], pins:[String])?
+    private var userInfo:(usernames:[String], passwords:[String])?
     private var names:[String] = []
     private var usernames:[String] = []
     private var passwords:[String] = []
@@ -69,7 +69,6 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
     // Lifecycle of ViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Set 'Sign Up?' string to be an attributed string
         setAttributedSignUpString()
         
@@ -99,6 +98,7 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
             // update again
             retrieveDataFromDatabase()
         }
+        print(usernames)
     }
     
 
@@ -151,25 +151,23 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func retrieveDataFromDatabase(){
-        userInfo = viewModel.getDataFromCoreData()
+        userInfo = viewModel.retrieveUserInfo()
         
-        names = userInfo!.names
         usernames = userInfo!.usernames
         passwords = userInfo!.passwords
-        pins = userInfo!.pins
     }
     
     private func createDummyData(){
         // create 1 dummy acount
-        viewModel.createDummyUserCoreData(name: "YourName", username: "ValidUsername", password: "ValidPassword", pinNumber: "0000")
+        viewModel.addUser(name: "YourName", username: "ValidUsername", password: "ValidPassword", pinNumber: "0000")
         // create 2 incomes and 2 expenses
-        viewModel.createDummyItemCoreData(id: viewModel.generateID(), title: "Udon Yasan", date: viewModel.getCurrentDate(), amount: "20", type: CustomItemType.expense.name, category: Category.food.name, description: "Eating udon with friends on Friday Night")
+        viewModel.addItem(id: viewModel.generateID(), title: "Udon Yasan", date: viewModel.getCurrentDate(), amount: "20", type: CustomItemType.expense.name, category: Category.food.name, description: "Eating udon with friends on Friday Night", user: "ValidUsername")
         
-        viewModel.createDummyItemCoreData(id: viewModel.generateID(), title: "January Rent", date: viewModel.getCurrentDate(), amount: "200", type: CustomItemType.expense.name, category: Category.rent.name, description: "House's rent in January")
+        viewModel.addItem(id: viewModel.generateID(), title: "January Rent", date: viewModel.getCurrentDate(), amount: "200", type: CustomItemType.expense.name, category: Category.rent.name, description: "House's rent in January", user: "ValidUsername")
         
-        viewModel.createDummyItemCoreData(id: viewModel.generateID(), title: "Work Salary 1", date: viewModel.getCurrentDate(), amount: "1000", type: CustomItemType.income.name, category: Category.salary.name, description: "Woa so much money")
+        viewModel.addItem(id: viewModel.generateID(), title: "Work Salary 1", date: viewModel.getCurrentDate(), amount: "1000", type: CustomItemType.income.name, category: Category.salary.name, description: "Woa so much money", user: "ValidUsername")
         
-        viewModel.createDummyItemCoreData(id: viewModel.generateID(), title: "Mom's Birthday Gift", date: viewModel.getCurrentDate(), amount: "200", type: CustomItemType.income.name, category: Category.donation.name, description: "Mom's birthday gift for me ")
+        viewModel.addItem(id: viewModel.generateID(), title: "Mom's Birthday Gift", date: viewModel.getCurrentDate(), amount: "200", type: CustomItemType.income.name, category: Category.donation.name, description: "Mom's birthday gift for me ", user: "ValidUsername")
         
     }
     

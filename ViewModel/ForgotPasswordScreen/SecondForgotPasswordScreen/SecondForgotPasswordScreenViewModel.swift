@@ -10,22 +10,12 @@ import Foundation
 import CoreData
 
 struct SecondForgotPasswordScreenViewModel {
+    private let dataManager = CoreDataManager.shared
     
-    func getPinNumberFromCoreData() -> [String]{
-        var pins:[String] = []
+    func retrievePinNumbers() -> [String]{
+        let userInfo = dataManager.retrieveNSUsers()
+        let pins = userInfo.pins
         
-        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
-        
-        do {
-            let searchResults = try CoreDataManager.getContext().fetch(fetchRequest)
-            
-            for result in searchResults as [User] {
-                pins.append(result.pinNumber!)
-                
-            }
-        } catch {
-            print("Error: \(error)")
-        }
         return pins
     }
     

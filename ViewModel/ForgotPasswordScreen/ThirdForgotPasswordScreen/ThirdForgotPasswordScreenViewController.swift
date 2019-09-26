@@ -80,7 +80,7 @@ class ThirdForgotPasswordScreenViewController: UIViewController {
             username = viewModel.retrieveTempUsername()
             guard let newPassword = newPasswordTextField.text else { return }
             // update password
-            viewModel.updatePasswordInCoreData(username: username, password: newPassword)
+            viewModel.updatePassword(username: username, password: newPassword)
             // reset all temporary data
             TempData.usernameInput = ""
             TempData.counter = 0
@@ -130,7 +130,7 @@ class ThirdForgotPasswordScreenViewController: UIViewController {
     }
     
     private func checkSamePassword(newPassword:String) -> Bool {
-        passwords = viewModel.getPasswordFromCoreData()
+        passwords = viewModel.retrievePasswords()
         var isSame:Bool = false
         
         if newPassword == passwords[TempData.counter] {

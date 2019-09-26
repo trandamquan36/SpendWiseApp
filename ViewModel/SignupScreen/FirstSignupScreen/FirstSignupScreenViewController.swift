@@ -270,7 +270,7 @@ class FirstSignupScreenViewController: UIViewController, UITextFieldDelegate  {
    
     private func checkIfUsernameExists(username:String) -> Bool {
         var isExist:Bool = false
-        usernamesInDatabase = viewModel.getUsernameFromCoreData()
+        usernamesInDatabase = viewModel.retrieveUsernames()
         
         for usernameInDatabase in usernamesInDatabase {
             if username == usernameInDatabase {

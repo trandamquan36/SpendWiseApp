@@ -110,7 +110,7 @@ class SecondForgotPasswordScreenViewController: UIViewController {
     }
     
     private func checkIfSamePin(pin:String) -> Bool{
-        pinNumbers = viewModel.getPinNumberFromCoreData()
+        pinNumbers = viewModel.retrievePinNumbers()
         var isSame:Bool = false
         
         if pin == pinNumbers[TempData.counter] {

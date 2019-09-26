@@ -47,7 +47,7 @@ class EditProfileScreenViewController: UIViewController {
         guard let name = nameTextField.text else { return }
         if validName == true {
             let userName = viewModel.retrieveTempUsername()
-            viewModel.updateNameInCoreData(username: userName, name: name)
+            viewModel.updateName(username: userName, name: name)
             performSegue(withIdentifier: "Back To Setting Screen", sender: self)
         } else {
     alert.showIncompleteFormAlert(on: self)

@@ -9,45 +9,16 @@
 import Foundation
 import CoreData
 struct EditProfileScreenViewModel {
-    func getNameFromCoreData() -> [String]{
-        var name:[String] = []
+    private let dataManager = CoreDataManager.shared
+    
+    func retrieveName() -> [String]{
+        let userInfo = dataManager.retrieveNSUsers()
+        let names = userInfo.names
         
-        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
-        
-        do {
-            let searchResults = try CoreDataManager.getContext().fetch(fetchRequest)
-            
-            for result in searchResults as [User] {
-                name.append(result.pinNumber!)
-                
-            }
-        } catch {
-            print("Error: \(error)")
-        }
-        
-        return name
+        return names
     }
-    func updateNameInCoreData(username:String, name:String) {
-        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
-        
-        do {
-            let searchResults = try CoreDataManager.getContext().fetch(fetchRequest)
-            
-            for result in searchResults as [User] {
-                
-                if username == result.value(forKey: "username") as? String{
-                    
-                    result.setValue(name, forKey: "name")
-                    break
-                } else {
-                }
-                
-            }
-        } catch {
-            print("Error: \(error)")
-        }
-        
-        CoreDataManager.saveContext()
+    func updateName(username:String, name:String) {
+        dataManager.updateNSUserName(username: username, updateInfo: name)
     }
     func retrieveName() -> String {
         return TempData.nameInput

@@ -54,7 +54,7 @@ enum Category {
         case .education: return UIImage(named: "education-icon")!
         case .shop: return UIImage(named: "shop-icon")!
         case .transportation: return UIImage(named: "transportation-icon")!
-        case .rent: return UIImage(named: "rent-icon ")!
+        case .rent: return UIImage(named: "rent-icon")!
         case .utilities: return UIImage(named: "utilities-icon")!
         case .salary: return UIImage(named: "salary-icon")!
         case .donation: return UIImage(named: "donation-icon")!
