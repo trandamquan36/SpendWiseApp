@@ -12,6 +12,7 @@ class FirstEditPasswordScreenViewController: UIViewController {
     private let viewModel = FirstEditPasswordScreenViewModel()
     private var passwordsInDatabase:[String] = []
     private let alert = Alert()
+    private var textFields:[DesignableTextField] = []
     
     @IBOutlet weak var currentPasswordTextField: DesignableTextField!
     
@@ -32,6 +33,9 @@ class FirstEditPasswordScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         currentPasswordTextField.isSecureTextEntry = true
+        
+        textFields.append(currentPasswordTextField)
+        UITextField.connectAllTxtFieldFields(txtfields: textFields)
 
         // Do any additional setup after loading the view.
     }

@@ -98,7 +98,7 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
             // update again
             retrieveDataFromDatabase()
         }
-        print(usernames)
+    
     }
     
 

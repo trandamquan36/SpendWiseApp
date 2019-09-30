@@ -43,7 +43,14 @@ class ExpandableHeaderViewNew: UITableViewHeaderFooterView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.textLabel?.textColor = Colors.getColor(redColor: 255, greenColor: 221, blueColor: 119, alpha: 1)
+        if (self.textLabel?.text == "Expenses") {
+            self.textLabel?.textColor = Colors.getColor(redColor: 255, greenColor: 99, blueColor: 71, alpha: 0.95)
+            
+        }
+        else
+        {
+            self.textLabel?.textColor = Colors.getColor(redColor: 50, greenColor: 205, blueColor: 50, alpha: 1)
+        }
         
         self.contentView.backgroundColor = Colors.getColor(redColor: 60, greenColor: 71, blueColor: 100, alpha: 1)
     }

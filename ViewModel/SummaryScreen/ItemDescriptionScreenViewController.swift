@@ -2,14 +2,27 @@ import UIKit
 
 class ItemDescriptionScreenViewController: UIViewController {
     
-    
     @IBOutlet private weak var image: UIImageView!
-    @IBOutlet private weak var category: UILabel!
-    @IBOutlet private weak var date: UILabel!
-    @IBOutlet private weak var amount: UILabel!
-    @IBOutlet private weak var detail: UILabel!
     
-    var selectedItem:(title:String, date:String, amount:String, category:String, description:String, image:UIImage?)?
+    @IBOutlet private weak var categoryLabel: UILabel!
+    
+    @IBOutlet private weak var dateTextField: DesignableTextField!
+    
+    @IBOutlet private weak var titleTextField: DesignableTextField!
+    
+    
+    @IBOutlet private weak var amountTextField: DesignableTextField!
+    
+    
+    
+    @IBOutlet private weak var descriptionTextView: DesignableTextView!
+    
+    
+    @IBAction private func closeButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil )
+    }
+    
+    var selectedItem:(id: UUID, title:String, date:String, amount:String, category:String, description:String, image:UIImage?)?
     
     
     override func viewDidLoad() {
@@ -17,11 +30,13 @@ class ItemDescriptionScreenViewController: UIViewController {
         guard let currentItem = selectedItem else { return }
        
         image.image = currentItem.image
-        //title.text = currentItem.title
-        date.text = currentItem.date
-        amount.text = currentItem.amount
-        detail.text = currentItem.description
-        category.text = currentItem.category
+        categoryLabel.text = currentItem.category
+        dateTextField.text = currentItem.date
+        titleTextField.text = currentItem.title
+        amountTextField.text = currentItem.amount
+        descriptionTextView.text = currentItem.description
+        
+        
         
         // Do any additional setup after loading the view.
     }

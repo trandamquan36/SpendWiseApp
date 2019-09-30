@@ -245,8 +245,8 @@ extension UILabel {
 
 extension UIButton {
     func pressed(){
-        self.layer.borderColor = Colors.getColor(redColor: 116.0, greenColor: 165.0, blueColor: 249.0, alpha: 100.0).cgColor
-        self.backgroundColor = Colors.getColor(redColor: 116.0, greenColor: 165.0, blueColor: 249.0, alpha: 100.0)
+        self.layer.borderColor = Colors.getColor(redColor: 52.0, greenColor: 120.0, blueColor: 246.0, alpha: 100.0).cgColor
+        self.backgroundColor = Colors.getColor(redColor: 52.0, greenColor: 120.0, blueColor: 246.0, alpha: 100.0)
         self.setTitleColor(Colors.getColor(redColor: 255.0, greenColor: 255.0, blueColor: 255.0, alpha: 100.0), for: .normal)
         
     }
@@ -259,19 +259,60 @@ extension UIButton {
     
   
 }
-
+private var maxLengths = [UITextView: Int]()
 extension UITextView {
-    @IBInspectable var doneAccessory: Bool{
-        get{
-            return self.doneAccessory
-        }
-        set(hasDone){
-            if hasDone{
-                addDoneButtonOnKeyboard()
+    
+    
+    @IBInspectable var maxLength: Int {
+        
+        get {
+            
+            guard let length = maxLengths[self]
+                else {
+                    return Int.max
             }
+            return length
+        }
+        set {
+            maxLengths[self] = newValue
+            self.delegate = self as? UITextViewDelegate
         }
     }
     
+    @objc func limitLength(textView: UITextView) {
+        guard let prospectiveText = textView.text,
+            prospectiveText.count > maxLength
+            else {
+                return
+        }
+        
+        let selection = selectedTextRange
+        let maxCharIndex = prospectiveText.index(prospectiveText.startIndex, offsetBy: maxLength)
+        text = String(prospectiveText[..<maxCharIndex])
+        selectedTextRange = selection
+        
+    }
+    
+    public func textViewDidChange(_ textView: UITextView) {
+        limitLength(textView:textView)
+    }
+    
+    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        scrollToBottom()
+        return true
+    }
+    
+    public func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        scrollToBottom()
+        return true
+    }
+    
+    func scrollToBottom() {
+        let location = text.count - 1
+        let bottom = NSMakeRange(location, 1)
+        self.scrollRangeToVisible(bottom)
+    }
+        
     func addDoneButtonOnKeyboard()
     {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))

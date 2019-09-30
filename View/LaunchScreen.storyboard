@@ -27,19 +27,18 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="icon-1" translatesAutoresizingMaskIntoConstraints="NO" id="Bc2-A9-aAI">
                                 <rect key="frame" x="95" y="219" width="130" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="9fE-uV-GfA"/>
-                                    <constraint firstAttribute="width" secondItem="Bc2-A9-aAI" secondAttribute="height" multiplier="1:1" id="NBD-Xr-AdS"/>
-                                    <constraint firstAttribute="height" constant="130" id="x6U-5g-ick"/>
+                                    <constraint firstAttribute="height" constant="130" id="D1D-DI-q3n"/>
+                                    <constraint firstAttribute="width" constant="130" id="Xky-3N-2Mb"/>
+                                    <constraint firstAttribute="width" secondItem="Bc2-A9-aAI" secondAttribute="height" multiplier="1:1" id="d1z-Po-w06"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.23529411759999999" green="0.2784313725" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Bc2-A9-aAI" firstAttribute="leading" secondItem="ulT-a8-YD1" secondAttribute="leading" constant="95" id="6B1-Od-KQg"/>
                             <constraint firstItem="18z-qz-gQt" firstAttribute="leading" secondItem="ulT-a8-YD1" secondAttribute="leading" constant="15.5" id="QkB-Xf-Sqr"/>
-                            <constraint firstItem="Bc2-A9-aAI" firstAttribute="top" secondItem="ulT-a8-YD1" secondAttribute="top" constant="199" id="bvx-6x-aO4"/>
-                            <constraint firstItem="ulT-a8-YD1" firstAttribute="trailing" secondItem="Bc2-A9-aAI" secondAttribute="trailing" constant="95" id="gzF-AO-lnw"/>
+                            <constraint firstItem="Bc2-A9-aAI" firstAttribute="centerY" secondItem="5op-Sw-rlX" secondAttribute="centerY" id="USf-Te-cjv"/>
                             <constraint firstItem="ulT-a8-YD1" firstAttribute="trailing" secondItem="18z-qz-gQt" secondAttribute="trailing" constant="15.5" id="mZA-Rr-Mcz"/>
+                            <constraint firstItem="Bc2-A9-aAI" firstAttribute="centerX" secondItem="5op-Sw-rlX" secondAttribute="centerX" id="qrS-02-wFU"/>
                             <constraint firstItem="ulT-a8-YD1" firstAttribute="bottom" secondItem="18z-qz-gQt" secondAttribute="bottom" constant="11.5" id="vx0-Cf-7TM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ulT-a8-YD1"/>

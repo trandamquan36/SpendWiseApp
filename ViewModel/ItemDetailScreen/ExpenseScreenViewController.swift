@@ -12,7 +12,9 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
     
     private let validation = Validation()
     
-    @IBOutlet weak var dateLabel: UILabel!
+  
+    @IBOutlet weak var titleTextField: DesignableTextField!
+    @IBOutlet weak var dateTextField: DesignableTextField!
     @IBOutlet weak var amountTextField: DesignableTextField!
     @IBOutlet weak var foodButton: DesignableButton!
     @IBOutlet weak var drinkButton: DesignableButton!
@@ -24,7 +26,8 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var rentButton: DesignableButton!
     @IBOutlet weak var othersButton: DesignableButton!
     @IBOutlet weak var descriptionTextView: DesignableTextView!
-    @IBAction func foodButtonPressed(_ sender: Any) {
+    
+    @IBAction private func foodButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.food.name
         
         for button in buttons {
@@ -35,7 +38,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    @IBAction func drinkButtonPressed(_ sender: Any) {
+    @IBAction private func drinkButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.drink.name
         
         for button in buttons {
@@ -46,7 +49,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    @IBAction func shopButtonPressed(_ sender: Any) {
+    @IBAction private func shopButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.shop.name
         
         for button in buttons {
@@ -57,7 +60,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    @IBAction func medicationButtonPressed(_ sender: Any) {
+    @IBAction private func medicationButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.medication.name
         
         for button in buttons {
@@ -68,7 +71,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    @IBAction func educationButtonPressed(_ sender: Any) {
+    @IBAction private func educationButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.education.name
         for button in buttons {
             if button == educationButton {
@@ -78,7 +81,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    @IBAction func utilitiesButtonPressed(_ sender: Any) {
+    @IBAction private func utilitiesButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.utilities.name
         
         for button in buttons {
@@ -89,7 +92,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    @IBAction func transportButtonPressed(_ sender: Any) {
+    @IBAction private func transportButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.transportation.name
         
         for button in buttons {
@@ -100,7 +103,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    @IBAction func rentButtonPressed(_ sender: Any) {
+    @IBAction private func rentButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.rent.name
         
         for button in buttons {
@@ -111,7 +114,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    @IBAction func othersButtonPressed(_ sender: Any) {
+    @IBAction private func othersButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.others.name
         
         for button in buttons {
@@ -123,7 +126,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    @IBAction func amountDidChange(_ sender: DesignableTextField) {
+    @IBAction private func amountDidChange(_ sender: DesignableTextField) {
         guard let amount = amountTextField.text else { return }
         
         let isValidAmount:Bool = self.validation.validateAmount(string: amount)
@@ -139,7 +142,21 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    @IBAction private func titleDidChange(_ sender: Any) {
+        guard let title = titleTextField.text else { return }
+        
+        if title.isEmpty == true {
+            TempData.validTitle = true
+            TempData.itemTitle = ""
+            titleTextField.showError()
+        } else {
+            TempData.validTitle = true
+            TempData.itemTitle = title
+            titleTextField.showNothing()
+        }
+    }
     private lazy var buttons:[DesignableButton] = [foodButton, drinkButton, shopButton, medicationButton, educationButton, utilitiesButton, transportButton, rentButton, othersButton]
+    private var textFields:[DesignableTextField] = []
     private let viewModel = AddItemScreenViewModel()
     private var currentDate:String = ""
     
@@ -151,9 +168,14 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         
         currentDate = viewModel.getCurrentDate()
         TempData.itemDate = currentDate
+        dateTextField.text = currentDate
         
-        dateLabel.text = currentDate
+        populateTextFields()
+        UITextField.connectAllTxtFieldFields(txtfields: textFields)
         
+        if TempData.editMode == true {
+            updateExpenseInfo(date: TempData.itemDate, title: TempData.itemTitle, amount: TempData.itemAmount, category: TempData.itemCategory, description: TempData.itemDescription)
+        }
 
         
     }
@@ -166,5 +188,30 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
     internal func textViewDidChange(_ textView: UITextView) {
         TempData.itemDescription = textView.text
     }
-   
+    
+    private func populateTextFields() {
+        textFields.append(titleTextField)
+        textFields.append(amountTextField)
+    }
+    
+    func updateExpenseInfo(date: String, title: String, amount: String, category:String, description:String) {
+        dateTextField.text = date
+        titleTextField.text = title
+        amountTextField.text = amount
+        descriptionTextView.text = description
+        
+        switch category {
+        case "Food": foodButton.pressed()
+        case "Drink": drinkButton.pressed()
+        case "Shop": shopButton.pressed()
+        case "Medication": medicationButton.pressed()
+        case "Education": educationButton.pressed()
+        case "Utilities": utilitiesButton.pressed()
+        case "Transportation": transportButton.pressed()
+        case "Rent": rentButton.pressed()
+        case "Others": othersButton.pressed()
+        default: foodButton.notPressed()
+        }
+        
+    }
 }

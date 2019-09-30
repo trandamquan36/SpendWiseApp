@@ -10,7 +10,9 @@ import UIKit
 
 class IncomeScreenViewController: UIViewController, UITextViewDelegate {
     
-    @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var titleTextField: DesignableTextField!
+    @IBOutlet weak var dateTextField: DesignableTextField!
     @IBOutlet weak var amountTextField: DesignableTextField!
     
     @IBOutlet weak var salaryButton: DesignableButton!
@@ -19,7 +21,7 @@ class IncomeScreenViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var descriptionTextView: DesignableTextView!
     
     
-    @IBAction func salaryButtonPressed(_ sender: Any) {
+    @IBAction private func salaryButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.salary.name
         
         for button in buttons {
@@ -31,7 +33,7 @@ class IncomeScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    @IBAction func donationButtonPressed(_ sender: Any) {
+    @IBAction private func donationButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.donation.name
         
         for button in buttons {
@@ -42,7 +44,7 @@ class IncomeScreenViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    @IBAction func othersButtonPressed(_ sender: Any) {
+    @IBAction private func othersButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.others.name
         
         for button in buttons {
@@ -54,7 +56,20 @@ class IncomeScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    @IBAction func amountDidChange(_ sender: Any) {
+    @IBAction private func titleDidChange(_ sender: Any) {
+        guard let title = titleTextField.text else { return }
+        
+        if title.isEmpty == true {
+            TempData.validTitle = false
+            TempData.itemTitle = ""
+            titleTextField.showError()
+        } else {
+            TempData.validTitle = true
+            TempData.itemTitle = title
+            titleTextField.showNothing()
+        }
+    }
+    @IBAction private func amountDidChange(_ sender: Any) {
         guard let amount = amountTextField.text else { return }
         
         let isValidAmount:Bool = self.validation.validateAmount(string: amount)
@@ -71,6 +86,7 @@ class IncomeScreenViewController: UIViewController, UITextViewDelegate {
     }
     
     private lazy var buttons:[DesignableButton] = [salaryButton, donationButton, othersButton]
+    private var textFields:[DesignableTextField] = []
     private let viewModel = AddItemScreenViewModel()
     private let validation = Validation()
     private var currentDate:String = ""
@@ -84,7 +100,15 @@ class IncomeScreenViewController: UIViewController, UITextViewDelegate {
         currentDate = viewModel.getCurrentDate()
         TempData.itemDate = currentDate
         
-        dateLabel.text = currentDate
+        dateTextField.text = currentDate
+        
+        populateTextFields()
+        UITextField.connectAllTxtFieldFields(txtfields: textFields)
+        
+        
+        if TempData.editMode == true {
+            updateIncomeInfo(date: TempData.itemDate, title: TempData.itemTitle, amount: TempData.itemAmount, category: TempData.itemCategory, description: TempData.itemDescription)
+        }
     }
     
     // Hide keyboard when user touches anywhere in UIViewController
@@ -94,5 +118,25 @@ class IncomeScreenViewController: UIViewController, UITextViewDelegate {
     
     internal func textViewDidChange(_ textView: UITextView) {
         TempData.itemDescription = textView.text
+    }
+    
+    private func populateTextFields() {
+        textFields.append(titleTextField)
+        textFields.append(amountTextField)
+    }
+    
+    func updateIncomeInfo(date: String, title: String, amount: String, category:String, description:String) {
+        dateTextField.text = date
+        titleTextField.text = title
+        amountTextField.text = amount
+        descriptionTextView.text = description
+        
+        switch category {
+        case "Salary": salaryButton.pressed()
+        case "Donation": donationButton.pressed()
+        case "Others": othersButton.notPressed()
+        default: salaryButton.notPressed()
+        }
+        
     }
 }

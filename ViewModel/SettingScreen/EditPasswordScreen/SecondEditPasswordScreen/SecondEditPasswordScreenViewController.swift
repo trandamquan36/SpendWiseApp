@@ -90,6 +90,7 @@ class SecondEditPasswordScreenViewController: UIViewController {
         super.viewDidLoad()
         newPasswordTextField.isSecureTextEntry = true
         confirmNewPasswordTextField.isSecureTextEntry = true
+        
         populateTextFieldArray()
         UITextField.connectAllTxtFieldFields(txtfields: textFields)
         // Do any additional setup after loading the view.

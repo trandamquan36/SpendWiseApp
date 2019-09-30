@@ -10,45 +10,17 @@ import Foundation
 import CoreData
 
 struct SecondEditPasswordScreenViewModel {
-    func getPasswordFromCoreData() -> [String]{
-        var passwords:[String] = []
+    private let dataManager = CoreDataManager.shared
+    
+    func retrievePassword() -> [String]{
+        let userInfo = dataManager.retrieveNSUsers()
+        let passwords = userInfo.passwords
         
-        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
-        
-        do {
-            let searchResults = try CoreDataManager.getContext().fetch(fetchRequest)
-            
-            for result in searchResults as [User] {
-                passwords.append(result.password!)
-                
-            }
-        } catch {
-            print("Error: \(error)")
-        }
         return passwords
     }
     
-    func updatePasswordInCoreData(username:String, password:String) {
-        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
-        
-        do {
-            let searchResults = try CoreDataManager.getContext().fetch(fetchRequest)
-            
-            for result in searchResults as [User] {
-                
-                if username == result.value(forKey: "username") as? String{
-                    
-                    result.setValue(password, forKey: "password")
-                    break
-                } else {
-                }
-                
-            }
-        } catch {
-            print("Error: \(error)")
-        }
-        
-        CoreDataManager.saveContext()
+    func updatePassword(username:String, password:String) {
+       dataManager.updateNSUserPassword(username: username, updateInfo: password)
     }
     func retrieveTempUsername() -> String {
         return TempData.usernameInput

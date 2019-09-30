@@ -11,6 +11,8 @@ import Foundation
 struct CustomDate{
     // Marked as optional as invalid construction data will produce a nil value
     private (set) var date:Date?
+    let userCalendar = Calendar.current
+    let instantDate = Date()
     
     init(day:Int, month:Int, year:Int, hour:Int = 0, minutes: Int = 0, timeZone:TimeZone = .current){
         var dateComponents = DateComponents()
@@ -31,8 +33,9 @@ struct CustomDate{
         dateComponents.timeZone = .current
         dateComponents.hour = 0
         dateComponents.minute = 0
-        
-        let userCalendar = Calendar.current
+        dateComponents.year = userCalendar.component(.year, from: instantDate)
+        dateComponents.month = userCalendar.component(.month, from: instantDate)
+        dateComponents.day = userCalendar.component(.day, from: instantDate)
         
         date = userCalendar.date(from: dateComponents)
     }
@@ -42,10 +45,17 @@ struct CustomDate{
         dateComponents.timeZone = .current
         dateComponents.hour = 0
         dateComponents.minute = 0
-        
-        let userCalendar = Calendar.current
-        
+        dateComponents.year = userCalendar.component(.year, from: instantDate)
+        dateComponents.month = userCalendar.component(.month, from: instantDate)
+        dateComponents.day = userCalendar.component(.day, from: instantDate)
+
+        //        print("current day is: ")
+        //        print(userCalendar.date(from: dateComponents)!)
+      
         return userCalendar.date(from: dateComponents)!
+        
+        
+        
     }
     
     mutating func addDate(day:Int = 0, month: Int = 0, year: Int = 0) {

@@ -25,6 +25,7 @@ struct TempData {
     
     static var counter:Int = 0
     
+    static var itemID:UUID = UUID()
     static var itemTitle:String = ""
     static var itemDate:String = ""
     static var itemAmount:String = ""
@@ -33,6 +34,7 @@ struct TempData {
     static var itemDescription:String = ""
     
     static var validAmount:Bool = false
+    static var validTitle:Bool = false
     static var editMode:Bool = false
     
     static func resetUserData() {
@@ -56,5 +58,6 @@ struct TempData {
         itemCategory = Category.none.name
         
         validAmount = false
+        validTitle = false
     }
 }
