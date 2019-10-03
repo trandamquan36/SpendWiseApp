@@ -49,13 +49,8 @@ struct CustomDate{
         dateComponents.month = userCalendar.component(.month, from: instantDate)
         dateComponents.day = userCalendar.component(.day, from: instantDate)
 
-        //        print("current day is: ")
-        //        print(userCalendar.date(from: dateComponents)!)
-      
         return userCalendar.date(from: dateComponents)!
-        
-        
-        
+
     }
     
     mutating func addDate(day:Int = 0, month: Int = 0, year: Int = 0) {

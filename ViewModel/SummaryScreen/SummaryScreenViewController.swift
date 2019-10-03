@@ -89,7 +89,6 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     private func classifyItems() {
-        print(ids.count)
         for index in stride(from: ids.count - 1, to: -1, by: -1){
             if types[index] == CustomItemType.income.name {
                 incomes.append((ids[index], titles[index], dates[index], amounts[index], types[index], categories[index], descriptions[index]))

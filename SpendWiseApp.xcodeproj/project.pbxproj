@@ -35,6 +35,8 @@
 		6F098A3823376BD6006D01AF /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F098A3723376BD6006D01AF /* Section.swift */; };
 		6F098A3A23376C0E006D01AF /* ExpandableHeaderViewNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F098A3923376C0E006D01AF /* ExpandableHeaderViewNew.swift */; };
 		6F098A3C23376CE2006D01AF /* MenuViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F098A3B23376CE2006D01AF /* MenuViewController2.swift */; };
+		6F0A0666234615B500820CA3 /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A0665234615B500820CA3 /* Goal+CoreDataClass.swift */; };
+		6F0A0668234615CC00820CA3 /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0A0667234615CC00820CA3 /* Goal+CoreDataProperties.swift */; };
 		6F0BA3CE231CFBE800470F22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0BA3CD231CFBE800470F22 /* AppDelegate.swift */; };
 		6F0BA3D0231CFBE800470F22 /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0BA3CF231CFBE800470F22 /* LoginScreenViewController.swift */; };
 		6F0BA3D8231CFBE900470F22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F0BA3D7231CFBE900470F22 /* Assets.xcassets */; };
@@ -132,6 +134,8 @@
 		6F098A3723376BD6006D01AF /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		6F098A3923376C0E006D01AF /* ExpandableHeaderViewNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderViewNew.swift; sourceTree = "<group>"; };
 		6F098A3B23376CE2006D01AF /* MenuViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController2.swift; sourceTree = "<group>"; };
+		6F0A0665234615B500820CA3 /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6F0A0667234615CC00820CA3 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6F0BA3CA231CFBE800470F22 /* SpendWiseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpendWiseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F0BA3CD231CFBE800470F22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F0BA3CF231CFBE800470F22 /* LoginScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
@@ -254,14 +258,14 @@
 			path = SignupScreen;
 			sourceTree = "<group>";
 		};
-		6F074CD523294BA400669DA0 /* Classes */ = {
+		6F074CD523294BA400669DA0 /* Non-important classes */ = {
 			isa = PBXGroup;
 			children = (
 				6F074CD12329440500669DA0 /* Validation.swift */,
 				6F074CE1232CA35600669DA0 /* Alert.swift */,
 				6F07E21E2336037B00B3DDC6 /* Animation.swift */,
 			);
-			path = Classes;
+			path = "Non-important classes";
 			sourceTree = "<group>";
 		};
 		6F074CD623294F4700669DA0 /* NormalData */ = {
@@ -310,7 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				6F0C1E942345185900E80809 /* Network */,
-				6F074CD523294BA400669DA0 /* Classes */,
+				6F074CD523294BA400669DA0 /* Non-important classes */,
 				6F0BA400231D421600470F22 /* ViewModel */,
 				6F0BA3FF231D421100470F22 /* View */,
 				6F0BA3FE231D41EC00470F22 /* Model */,
@@ -415,6 +419,8 @@
 				6F00DA11232F784700C81A11 /* User+CoreDataProperties.swift */,
 				6F8933C9233607CD001B915F /* Item+CoreDataClass.swift */,
 				6F8933CB233607DA001B915F /* Item+CoreDataProperties.swift */,
+				6F0A0665234615B500820CA3 /* Goal+CoreDataClass.swift */,
+				6F0A0667234615CC00820CA3 /* Goal+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -826,6 +832,7 @@
 				6F8933BB23360567001B915F /* GoalSetterScreenViewModel.swift in Sources */,
 				6F098A3C23376CE2006D01AF /* MenuViewController2.swift in Sources */,
 				6F4CA2CD2333574500FCC561 /* SecondSignupScreenViewModel.swift in Sources */,
+				6F0A0668234615CC00820CA3 /* Goal+CoreDataProperties.swift in Sources */,
 				6FFAF9442333B43900CC89F6 /* MenuViewController.swift in Sources */,
 				6F098A3223375D85006D01AF /* CustomDate.swift in Sources */,
 				6FCFB3A62324D710009D5409 /* FirstForgotPasswordScreenViewController.swift in Sources */,
@@ -848,6 +855,7 @@
 				6F8933D423363668001B915F /* FirstEditPasswordScreenViewModel.swift in Sources */,
 				6F8933C8233606CD001B915F /* Category.swift in Sources */,
 				6FD46D14233BA46D00D32546 /* ChartColor.swift in Sources */,
+				6F0A0666234615B500820CA3 /* Goal+CoreDataClass.swift in Sources */,
 				6FFAF94E2333B46400CC89F6 /* SettingsCell.swift in Sources */,
 				6FFAF9482333B43900CC89F6 /* SettingsTableViewController2.swift in Sources */,
 				6F074CDC232B9A8000669DA0 /* FirstSignupScreenViewModel.swift in Sources */,

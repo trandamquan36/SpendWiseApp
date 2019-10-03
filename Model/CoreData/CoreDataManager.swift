@@ -67,10 +67,11 @@ class CoreDataManager {
         return (names: names, usernames: usernames, passwords: passwords, pins: pins)
     }
     
-    func retrieveNSItems(username: String) -> (ids:[UUID], titles:[String], dates:[String], amounts:[String], types:[String], categories:[String], descriptions:[String], users:[String]) {
+    func retrieveNSItems(username: String) -> (ids:[UUID], titles:[String], dates:[String], times:[String], amounts:[String], types:[String], categories:[String], descriptions:[String], users:[String]) {
         var ids:[UUID] = []
         var titles:[String] = []
         var dates:[String] = []
+        var times:[String] = []
         var amounts:[String] = []
         var types:[String] = []
         var categories:[String] = []
@@ -87,6 +88,7 @@ class CoreDataManager {
                     ids.append(result.id!)
                     titles.append(result.title!)
                     dates.append(result.date!)
+                    times.append(result.time!)
                     amounts.append(result.amount!)
                     types.append(result.type!)
                     categories.append(result.category!)
@@ -98,7 +100,7 @@ class CoreDataManager {
             print("Error: \(error)")
         }
         
-        return (ids:ids, titles: titles, dates:dates, amounts:amounts, types:types, categories: categories, descriptions:descriptions, users:users)
+        return (ids:ids, titles: titles, dates:dates, times: times, amounts:amounts, types:types, categories: categories, descriptions:descriptions, users:users)
         
     }
     
