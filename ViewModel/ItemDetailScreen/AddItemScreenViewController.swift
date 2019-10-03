@@ -26,8 +26,14 @@ class AddItemScreenViewController: UIViewController {
         if TempData.itemCategory != Category.none.name && TempData.validAmount == true && TempData.validTitle == true{
          
             let id = viewModel.generateID()
+            let currentTime = viewModel.getCurrentTime()
             
-            viewModel.addItem(id: id, title: TempData.itemTitle, date: TempData.itemDate, amount: TempData.itemAmount, type: TempData.itemType, category: TempData.itemCategory, description: TempData.itemDescription, user: TempData.usernameInput)
+            viewModel.addItem(id: id, title: TempData.itemTitle,
+                              date: TempData.itemDate, time: currentTime,
+                              amount: TempData.itemAmount, type: TempData.itemType,
+                              category: TempData.itemCategory,
+                              description: TempData.itemDescription,
+                              user: TempData.usernameInput)
 
             TempData.itemType = CustomItemType.none.name
             TempData.resetItemData()

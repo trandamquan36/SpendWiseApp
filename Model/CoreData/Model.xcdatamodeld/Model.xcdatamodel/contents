@@ -6,6 +6,7 @@
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="user" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,7 +18,7 @@
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Item" positionX="118.51953125" positionY="-50.6015625" width="128" height="163"/>
+        <element name="Item" positionX="118.51953125" positionY="-50.6015625" width="128" height="180"/>
         <element name="User" positionX="-63" positionY="-18" width="128" height="103"/>
     </elements>
 </model>

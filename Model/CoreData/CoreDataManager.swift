@@ -26,13 +26,14 @@ class CoreDataManager {
         saveContext()
     }
     
-    func addNSItem(id:UUID, title:String, date:String, amount:String, type:String, category:String, description: String, user:String) {
+    func addNSItem(id:UUID, title:String, date:String, time: String, amount:String, type:String, category:String, description: String, user:String) {
         
         let item:Item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: persistentContainer.viewContext) as! Item
         
         item.id = id
         item.title = title
         item.date = date
+        item.time = time
         item.amount = amount
         item.type = type
         item.category = category

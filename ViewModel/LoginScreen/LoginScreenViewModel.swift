@@ -26,8 +26,8 @@ struct LoginScreenViewModel {
         dataManager.addNSUser(name: name, username: username, password: password, pinNumber: pinNumber)
     }
     
-    func addItem(id:UUID, title:String, date:String, amount:String, type:String,  category:String, description:String, user:String) {
-        dataManager.addNSItem(id: id, title: title, date: date,
+    func addItem(id:UUID, title:String, date:String, time: String,amount:String, type:String, category:String, description:String, user:String) {
+        dataManager.addNSItem(id: id, title: title, date: date, time: time,
                               amount: amount, type: type,
                               category: category, description: description,
                               user: user)
@@ -40,6 +40,15 @@ struct LoginScreenViewModel {
         let date = formatter.string(from: Date())
         
         return date
+    }
+    
+    func getCurrentTime() -> String {
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "HH:mm:ss"
+        let time = formatter.string(from: Date())
+        
+        return time
     }
     
     func generateID() -> UUID {

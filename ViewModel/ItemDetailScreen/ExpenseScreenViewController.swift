@@ -41,6 +41,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
+    
     @IBAction private func drinkButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.drink.name
         
@@ -161,6 +162,7 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         }
     }
     private lazy var buttons:[DesignableButton] = [foodButton, drinkButton, shopButton, medicationButton, educationButton, utilitiesButton, transportButton, rentButton, othersButton]
+    
     private var textFields:[DesignableTextField] = []
     private let viewModel = AddItemScreenViewModel()
     private var currentDate:String = ""
@@ -173,11 +175,13 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         
         populateTextFields()
         UITextField.connectAllTxtFieldFields(txtfields: textFields)
-    
+        
         currentDate = viewModel.getCurrentDate()
+        
         TempData.itemDate = currentDate
         dateTextField.text = currentDate
         
+     
     }
     
     // Hide keyboard when user touches anywhere in UIViewController

@@ -161,13 +161,13 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
         // create 1 dummy acount
         viewModel.addUser(name: "YourName", username: "ValidUsername", password: "ValidPassword", pinNumber: "0000")
         // create 2 incomes and 2 expenses
-        viewModel.addItem(id: viewModel.generateID(), title: "Udon Yasan", date: viewModel.getCurrentDate(), amount: "20", type: CustomItemType.expense.name, category: Category.food.name, description: "Eating udon with friends on Friday Night", user: "ValidUsername")
+        viewModel.addItem(id: viewModel.generateID(), title: "Udon Yasan", date: viewModel.getCurrentDate(), time: viewModel.getCurrentTime(), amount: "20", type: CustomItemType.expense.name, category: Category.food.name, description: "Eating udon with friends on Friday Night", user: "ValidUsername")
         
-        viewModel.addItem(id: viewModel.generateID(), title: "January Rent", date: viewModel.getCurrentDate(), amount: "200", type: CustomItemType.expense.name, category: Category.rent.name, description: "House's rent in January", user: "ValidUsername")
+        viewModel.addItem(id: viewModel.generateID(), title: "January Rent", date: viewModel.getCurrentDate(),time: viewModel.getCurrentTime(), amount: "200", type: CustomItemType.expense.name, category: Category.rent.name, description: "House's rent in January", user: "ValidUsername")
         
-        viewModel.addItem(id: viewModel.generateID(), title: "Work Salary 1", date: viewModel.getCurrentDate(), amount: "1000", type: CustomItemType.income.name, category: Category.salary.name, description: "Woa so much money", user: "ValidUsername")
+        viewModel.addItem(id: viewModel.generateID(), title: "Work Salary 1", date: viewModel.getCurrentDate(),time: viewModel.getCurrentTime(), amount: "1000", type: CustomItemType.income.name, category: Category.salary.name, description: "Woa so much money", user: "ValidUsername")
         
-        viewModel.addItem(id: viewModel.generateID(), title: "Mom's Birthday Gift", date: viewModel.getCurrentDate(), amount: "200", type: CustomItemType.income.name, category: Category.donation.name, description: "Mom's birthday gift for me ", user: "ValidUsername")
+        viewModel.addItem(id: viewModel.generateID(), title: "Mom's Birthday Gift", date: viewModel.getCurrentDate(),time: viewModel.getCurrentTime(), amount: "200", type: CustomItemType.income.name, category: Category.donation.name, description: "Mom's birthday gift for me ", user: "ValidUsername")
         
     }
     

@@ -21,15 +21,25 @@ struct AddItemScreenViewModel {
         return date
     }
     
+    func getCurrentTime() -> String {
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "HH:mm:ss"
+        
+        let time = formatter.string(from: Date())
+        
+        return time
+    }
+    
     func generateID() -> UUID {
         let id = UUID()
         
         return id
     }
     
-    func addItem(id:UUID, title:String, date:String, amount:String, type:String, category:String, description:String, user:String ) {
+    func addItem(id:UUID, title:String, date:String, time: String, amount:String, type:String, category:String, description:String, user:String ) {
         
-        dataManager.addNSItem(id: id, title: title, date: date, amount: amount, type: type, category: category, description: description, user: user)
+        dataManager.addNSItem(id: id, title: title, date: date, time: time, amount: amount, type: type, category: category, description: description, user: user)
     }
     
    

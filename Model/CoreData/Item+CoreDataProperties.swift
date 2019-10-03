@@ -18,6 +18,7 @@ extension Item {
     
     @NSManaged public var amount: String?
     @NSManaged public var date: String?
+    @NSManaged public var time: String?
     @NSManaged public var detail: String?
     @NSManaged public var id: UUID?
     @NSManaged public var type: String?
