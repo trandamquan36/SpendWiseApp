@@ -53,6 +53,7 @@ class ExpandableHeaderViewNew: UITableViewHeaderFooterView {
         }
         
         self.contentView.backgroundColor = Colors.getColor(redColor: 60, greenColor: 71, blueColor: 100, alpha: 1)
+        
     }
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -43,4 +43,8 @@ struct SummaryScreenViewModel {
     
         return (ids:ids, titles: titles, dates:dates, amounts:amounts, types:types, categories: categories, descriptions:descriptions)
     }
+    
+    func deleteItemInfo(id: UUID, username:String) {
+        dataManager.deleteNSItem(id: id, username: username)
+    }
 }

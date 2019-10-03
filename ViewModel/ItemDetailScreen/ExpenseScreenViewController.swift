@@ -27,6 +27,9 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var othersButton: DesignableButton!
     @IBOutlet weak var descriptionTextView: DesignableTextView!
     
+    @IBAction private func cameraPressed(_ sender: Any) {
+        print("Camera pressed")
+    }
     @IBAction private func foodButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.food.name
         
@@ -132,10 +135,12 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         let isValidAmount:Bool = self.validation.validateAmount(string: amount)
         
         if amount.isEmpty == true || isValidAmount == false {
+            print(TempData.validAmount)
             TempData.validAmount = false
             TempData.itemAmount = ""
             amountTextField.showError()
         } else {
+            print(TempData.validAmount)
             TempData.validAmount = true
             amountTextField.showNothing()
             TempData.itemAmount = amount
@@ -166,17 +171,12 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         amountTextField.addDoneButtonOnKeyboard()
         descriptionTextView.addDoneButtonOnKeyboard()
         
+        populateTextFields()
+        UITextField.connectAllTxtFieldFields(txtfields: textFields)
+    
         currentDate = viewModel.getCurrentDate()
         TempData.itemDate = currentDate
         dateTextField.text = currentDate
-        
-        populateTextFields()
-        UITextField.connectAllTxtFieldFields(txtfields: textFields)
-        
-        if TempData.editMode == true {
-            updateExpenseInfo(date: TempData.itemDate, title: TempData.itemTitle, amount: TempData.itemAmount, category: TempData.itemCategory, description: TempData.itemDescription)
-        }
-
         
     }
     
@@ -194,24 +194,6 @@ class ExpenseScreenViewController: UIViewController, UITextViewDelegate {
         textFields.append(amountTextField)
     }
     
-    func updateExpenseInfo(date: String, title: String, amount: String, category:String, description:String) {
-        dateTextField.text = date
-        titleTextField.text = title
-        amountTextField.text = amount
-        descriptionTextView.text = description
-        
-        switch category {
-        case "Food": foodButton.pressed()
-        case "Drink": drinkButton.pressed()
-        case "Shop": shopButton.pressed()
-        case "Medication": medicationButton.pressed()
-        case "Education": educationButton.pressed()
-        case "Utilities": utilitiesButton.pressed()
-        case "Transportation": transportButton.pressed()
-        case "Rent": rentButton.pressed()
-        case "Others": othersButton.pressed()
-        default: foodButton.notPressed()
-        }
-        
-    }
+   
+    
 }

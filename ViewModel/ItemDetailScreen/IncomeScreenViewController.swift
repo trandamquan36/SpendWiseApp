@@ -20,6 +20,9 @@ class IncomeScreenViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var othersButton: DesignableButton!
     @IBOutlet weak var descriptionTextView: DesignableTextView!
     
+    @IBAction private func cameraPressed(_ sender: Any) {
+        
+    }
     
     @IBAction private func salaryButtonPressed(_ sender: Any) {
         TempData.itemCategory = Category.salary.name
@@ -97,18 +100,13 @@ class IncomeScreenViewController: UIViewController, UITextViewDelegate {
         amountTextField.addDoneButtonOnKeyboard()
         descriptionTextView.addDoneButtonOnKeyboard()
         
-        currentDate = viewModel.getCurrentDate()
-        TempData.itemDate = currentDate
-        
-        dateTextField.text = currentDate
-        
         populateTextFields()
         UITextField.connectAllTxtFieldFields(txtfields: textFields)
         
-        
-        if TempData.editMode == true {
-            updateIncomeInfo(date: TempData.itemDate, title: TempData.itemTitle, amount: TempData.itemAmount, category: TempData.itemCategory, description: TempData.itemDescription)
-        }
+        currentDate = viewModel.getCurrentDate()
+        TempData.itemDate = currentDate
+        dateTextField.text = currentDate
+       
     }
     
     // Hide keyboard when user touches anywhere in UIViewController
@@ -125,18 +123,4 @@ class IncomeScreenViewController: UIViewController, UITextViewDelegate {
         textFields.append(amountTextField)
     }
     
-    func updateIncomeInfo(date: String, title: String, amount: String, category:String, description:String) {
-        dateTextField.text = date
-        titleTextField.text = title
-        amountTextField.text = amount
-        descriptionTextView.text = description
-        
-        switch category {
-        case "Salary": salaryButton.pressed()
-        case "Donation": donationButton.pressed()
-        case "Others": othersButton.notPressed()
-        default: salaryButton.notPressed()
-        }
-        
-    }
 }

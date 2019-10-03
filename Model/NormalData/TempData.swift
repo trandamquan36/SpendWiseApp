@@ -35,7 +35,6 @@ struct TempData {
     
     static var validAmount:Bool = false
     static var validTitle:Bool = false
-    static var editMode:Bool = false
     
     static func resetUserData() {
         nameInput = ""

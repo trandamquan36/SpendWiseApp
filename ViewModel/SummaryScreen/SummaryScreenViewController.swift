@@ -14,17 +14,13 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     private var instantDate = CustomDateViewModel()
     
     @IBOutlet private weak var tableView: UITableView!
-    
-//    @IBAction private func addItemPressed(_ sender: Any) {
-//        performSegue(withIdentifier: "SummaryScreen_AddItemScreen", sender: self)
-//    }
-    
-    private var expenseTableisExpanded:Bool = false
-    private var incomeTableisExpanded:Bool = false
+    @IBAction private func addItemPressed(_ sender: Any) {
+        performSegue(withIdentifier: "SummaryScreen_AddItemScreen", sender: self)
+    }
     
     private var totalExpenseAmount:Float=0
     private var totalIncomeAmount:Float=0
-    private let datePicker = UIDatePicker()
+    //private let datePicker = UIDatePicker()
     
     private var sections:[Section] = []
     
@@ -50,32 +46,33 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     private (set) var tomorrow = Date()
     
     //define a data structure to track when a section is open or close
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        retrieveDataFromDatabase()
-        if ids.count > 1 {
-            classifyItems()
-        }
-        addSection()
-        
+    fileprivate func setupDateComponent() {
         now = instantDate.getInstantDate()
         instantDate.addDate(day: 1)
         tomorrow = instantDate.getInstantDate()
         instantDate.addDate(day: -1)
-        
         let formatter = DateFormatter()
         formatter.dateFormat = "E(dd/MM)"
         let timeString = "\(formatter.string(from: now))  -  \(formatter.string(from: tomorrow))"
         datePickerLabel.text = String(timeString)
         
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        retrieveDataFromDatabase()
+        if ids.count > 0  {
+            classifyItems()
+        }
+        addSection() // set up sections and tableview for expenses and income items.
+        
+        setupDateComponent() // set up date formatter for date label
         // Set Data for Charts
         updateChart()
         
         setChart(from: now, to: tomorrow)
-        print(now)
-        print(tomorrow)
-        print(timeString)
+       
     }
     
     // Mark Core Data
@@ -93,7 +90,7 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     private func classifyItems() {
         print(ids.count)
-        for index in 0...ids.count-1 {
+        for index in stride(from: ids.count - 1, to: -1, by: -1){
             if types[index] == CustomItemType.income.name {
                 incomes.append((ids[index], titles[index], dates[index], amounts[index], types[index], categories[index], descriptions[index]))
             } else if types[index] == CustomItemType.expense.name  {
@@ -109,10 +106,11 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: -ITEM
     @IBAction private func nextDayButton(_ sender: Any) {
-        now = tomorrow
-        instantDate.addDate(day: 2)
+        instantDate.addDate(day: 1)
+        now = instantDate.getInstantDate()
+        instantDate.addDate(day: 1)
         tomorrow = instantDate.getInstantDate()
-        instantDate.addDate(day: -1)
+        instantDate.addDate(day:-1)
         
         let formatter = DateFormatter()
         formatter.dateFormat = "E(dd/MM)"
@@ -123,10 +121,9 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     @IBAction private func previousDayButton(_ sender: Any) {
-        tomorrow = now
-        instantDate.addDate(day: -2)
+        tomorrow = instantDate.getInstantDate()
+        instantDate.addDate(day: -1)
         now = instantDate.getInstantDate()
-        instantDate.addDate(day: 1)
     
         let formatter = DateFormatter()
         formatter.dateFormat = "E(dd/MM)"
@@ -162,33 +159,39 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
         return true
     }
     
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {
-            (action,view,completion) in
-            
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if indexPath.section == 0 {
+                let itemID = self.expenses[indexPath.row].id
+                
+                
+                expenses.remove(at: indexPath.row)
+                self.deleteDataInArray(itemID: itemID, username: TempData.usernameInput)
+                
+                self.tableView.beginUpdates()
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                viewModel.deleteItemInfo(id: itemID, username: TempData.usernameInput)
+                self.tableView.endUpdates()
+                updateChart()
+                
+                
+            } else if indexPath.section == 1 {
+                let itemID = self.incomes[indexPath.row].id
+                
+                
+                
+                self.incomes.remove(at: indexPath.row)
+                self.deleteDataInArray(itemID: itemID, username: TempData.usernameInput)
+                self.tableView.beginUpdates()
+                
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.viewModel.deleteItemInfo(id: itemID, username: TempData.usernameInput)
+                self.tableView.endUpdates()
+                
+                self.updateChart()
+            }
         }
-        deleteAction.image = UIImage(imageLiteralResourceName: "Trash")
-        deleteAction.backgroundColor = .red
-        
-        let editAction = UIContextualAction(style: .normal, title: "Edit"){
-            (action,view,completion) in
-            //guard let selectedRow = self.tableView.indexPathForSelectedRow else {return}
-            print( " selected Row is : \(indexPath.row) selected Section is: \(indexPath.section) " )
-           // guard let selectedSection = self.tableView.i
-            TempData.editMode = true
-            
-        
-            self.performSegue(withIdentifier: "SummaryScreen_AddItemScreen", sender: self)
-        }
-        editAction.image = UIImage(imageLiteralResourceName: "icons8-edit-24")
-        editAction.backgroundColor = .green
-        
-        
-        let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
-        
-        return swipeConfiguration
     }
-    
     
    
     
@@ -207,6 +210,7 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return sections[section].items.count
         if section == 0 {
+            //UITableView.animate(withDuration: 0.3, animations: )
             return expenses.count
         }
         else {
@@ -250,9 +254,6 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
         let itemAmount = cell.viewWithTag(1002) as? UILabel
         let itemDate = cell.viewWithTag(1003) as? UILabel
         
-       
-        //let record = indexPath.section == 0 ? viewModel.getRecord(index: indexPath.row): view
-        
       
         
         let records = indexPath.section == 0 ? getExpenseRecord(index: indexPath.row) : getIncomeRecord(index: indexPath.row)
@@ -270,21 +271,35 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func toggleSection(header: ExpandableHeaderViewNew, section: Int) {
-        sections[section].expanded = !sections[section].expanded
-        print("toggle pressed")
-        // next we gonna reload the row in the table view and depend on the size of item array
-        tableView.beginUpdates()
-        for i in 0 ..< sections[section].items.count {
-            tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .middle)
+        if ids.count != 0 {
+            sections[section].expanded = !sections[section].expanded
+            print("toggle pressed")
+            tableView.reloadData()
+            UIView.transition(with: tableView,
+                                      duration: 0.35,
+                                      options: .transitionCrossDissolve,
+                                      animations:
+                { () -> Void in
+                    self.tableView.reloadData()
+            },
+                                      completion: nil);
+//            self.tableView.beginUpdates()
+//            for i in 0 ..< sections[section].items.count {
+//                tableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .middle)
+//            }
+//            self.tableView.endUpdates()
         }
-        tableView.endUpdates()
+       
+        // next we gonna reload the row in the table view and depend on the size of item array
+        
+     
     }
     
     //Mark: gesture recognizer
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let selectedRow = self.tableView.indexPathForSelectedRow else {return}
-        print(selectedRow)
+     
         let selectedSection = selectedRow.section
         if segue.destination is ItemDescriptionScreenViewController {
             let destination = segue.destination as! ItemDescriptionScreenViewController
@@ -297,21 +312,6 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
             {
                 let selectedItem = getIncomeRecord(index: selectedRow.row)
                 destination.selectedItem = selectedItem
-            }
-        } else if segue.destination is AddItemScreenViewController {
-            print("AddItem")
-            
-            if selectedSection == 0 {
-                TempData.itemType = CustomItemType.expense.name
-    
-                let currentItem = self.getExpenseRecord(index: selectedRow.row)
-                    self.passEditableData(id: currentItem.id, date: currentItem.date, title:currentItem.title, amount: currentItem.amount, category: currentItem.category, description: currentItem.description)
-            } else {
-                TempData.itemType = CustomItemType.income.name
-            
-                let currentItem = self.getIncomeRecord(index: selectedRow.row)
-                self.passEditableData(id: currentItem.id, date: currentItem.date, title: currentItem.title, amount: currentItem.amount, category: currentItem.category, description:  currentItem.description)
-            
             }
         }
     }
@@ -443,12 +443,15 @@ class SummaryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     
-    private func passEditableData(id: UUID, date:String, title:String, amount:String, category:String, description:String) {
-        TempData.itemID = id
-        TempData.itemDate = date
-        TempData.itemTitle = title
-        TempData.itemAmount = amount
-        TempData.itemCategory = category
-        TempData.itemDescription = description
+    private func deleteDataInArray(itemID:UUID, username: String){
+        guard let index = ids.firstIndex(of: itemID) else { return }
+        
+        ids.remove(at: index)
+        titles.remove(at: index)
+        dates.remove(at: index)
+        amounts.remove(at: index)
+        types.remove(at: index)
+        categories.remove(at: index)
+        descriptions.remove(at: index)
     }
 }

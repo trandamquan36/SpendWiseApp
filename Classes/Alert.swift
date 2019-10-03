@@ -19,6 +19,14 @@ struct Alert {
         }
     }
     
+    func createAlert(vc: UIViewController, title: String, message: String) -> UIAlertController {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        return alert
+    }
+    
+    
     func showIncompleteFormAlert(on vc: UIViewController){
         showBasicAlert(vc: vc, title: "Invalid Form", message: "Please fill out all the fields correctly")
     }

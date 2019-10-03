@@ -32,7 +32,5 @@ struct AddItemScreenViewModel {
         dataManager.addNSItem(id: id, title: title, date: date, amount: amount, type: type, category: category, description: description, user: user)
     }
     
-    func updateItem(id: UUID, title:String, amount:String, category:String, description:String, user:String ) {
-        dataManager.updateNSItemInfo(id: id, username: user, title: title, amount: amount, category: category, description: description)
-    }
+   
 }

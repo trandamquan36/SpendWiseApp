@@ -161,30 +161,25 @@ class CoreDataManager {
         saveContext()
     }
     
-    func updateNSItemInfo(id: UUID, username: String, title:String, amount:String, category:String, description:String) {
+   
+    
+    func deleteNSItem(id:UUID, username:String) {
         let fetchRequest:NSFetchRequest<Item> = Item.fetchRequest()
         
         do {
             let searchResults = try persistentContainer.viewContext.fetch(fetchRequest)
             
             for result in searchResults as [Item] {
-                if id == result.id && username == result.user{
-                    result.title = title
-                    result.amount = amount
-                    result.category = category
-                    result.detail = description
+                if result.id == id && result.user == username {
+                    persistentContainer.viewContext.delete(result)
                     break
                 }
             }
         } catch {
-            print ("Error: \(error)")
+            print("Error: \(error)")
         }
         
         saveContext()
-    }
-    
-    func deleteNSItem() {
-        
     }
     
     
