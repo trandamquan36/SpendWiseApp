@@ -9,6 +9,11 @@
 import Foundation
 
 struct TempData {
+    
+    static var app_id = "f72d2561"
+    static var app_key = "47695194d0b6d1f875f5fd6f47597707"
+    
+    static var facial_img: String = ""
     static var nameInput:String = ""
     static var usernameInput:String = ""
     static var passwordInput:String = ""

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FacialRecognition" representedClassName="FacialRecognition" syncable="YES">
+        <attribute name="confidence" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="face_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subject_id" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Goal" representedClassName="Goal" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,5 +33,6 @@
         <element name="Goal" positionX="27" positionY="18" width="128" height="120"/>
         <element name="Item" positionX="118.51953125" positionY="-50.6015625" width="128" height="180"/>
         <element name="User" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="FacialRecognition" positionX="27" positionY="18" width="128" height="90"/>
     </elements>
 </model>

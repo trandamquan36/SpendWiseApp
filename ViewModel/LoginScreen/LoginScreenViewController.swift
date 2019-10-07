@@ -13,7 +13,12 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
     private let viewModel = LoginScreenViewModel()
     private let validation = Validation()
     private let alert = Alert()
+    
+    private var reachability = try! Reachability()
+    
    
+ 
+    
     //LoginScreen UI elements
     @IBOutlet private weak var signInView: DesignableView!
     @IBOutlet private weak var signUpButton: UIButton!
@@ -24,9 +29,36 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
         TempData.comeFromLoginScreen = true
         performSegue(withIdentifier: "LoginScreen_FP1", sender: self)
     }
-    @IBAction func facialRecognitionButton(_ sender: Any) {
-        TempData.comeFromLoginScreen = true
-        performSegue(withIdentifier: "LoginScreen_CameraScreen", sender: self)
+    
+    @IBOutlet weak var facialRecognition: DesignableButton!
+    @IBAction private func facialRecognitionButton(_ sender: Any) {
+//        reachability.whenReachable = { _ in
+//            DispatchQueue.main.async {
+//                TempData.comeFromLoginScreen = true
+//                self.performSegue(withIdentifier: "LoginScreen_CameraScreen", sender: self)
+//            }
+//        }
+//
+//        reachability.whenUnreachable = { _ in
+//            DispatchQueue.main.async {
+//                self.alert.showNoConnectionForUsingFacialRecognitionAlert(on: self)
+//            }
+//        }
+//
+        if reachability.connection != .unavailable {
+            DispatchQueue.main.async {
+                TempData.comeFromLoginScreen = true
+                self.performSegue(withIdentifier: "LoginScreen_CameraScreen", sender: self)
+            }
+          
+        } else {
+            DispatchQueue.main.async {
+                self.alert.showNoConnectionForUsingFacialRecognitionAlert(on: self)
+            }
+        }
+        
+       
+        
     }
     
     @IBAction private func loginButton(_ sender: DesignableButton) {
@@ -72,6 +104,7 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
         // Set 'Sign Up?' string to be an attributed string
         setAttributedSignUpString()
         
+      
         // Initialize alpha of the UI elements for animation purposes
         setUIAlpha()
         
@@ -87,6 +120,8 @@ class LoginScreenViewController: UIViewController, UITextFieldDelegate {
         UITextField.connectAllTxtFieldFields(txtfields: textFields)
         
         TempData.resetUserData()
+        
+      
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -3,20 +3,28 @@ PODS:
     - Charts/Core (= 3.3.0)
   - Charts/Core (3.3.0)
   - IQKeyboardManagerSwift (6.2.1)
+  - ReachabilitySwift (4.3.1)
+  - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Charts
   - IQKeyboardManagerSwift (= 6.2.1)
+  - ReachabilitySwift
+  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   trunk:
     - Charts
     - IQKeyboardManagerSwift
+    - ReachabilitySwift
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
   IQKeyboardManagerSwift: 0f0ae8935360b4003e6ea1ac7c19898f01e2f7c7
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 59c726b92e8c698b4b304303fd1c01576dd270bc
+PODFILE CHECKSUM: a77d25df1a64389893e033201c9347f03dc26e74
 
 COCOAPODS: 1.8.0.beta.2

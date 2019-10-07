@@ -1214,6 +1214,7 @@
                         <viewLayoutGuide key="safeArea" id="RcD-Rs-6Zm"/>
                     </view>
                     <connections>
+                        <outlet property="facialRecognition" destination="ifk-A1-3tJ" id="bnZ-Fw-Ph1"/>
                         <outlet property="passwordTextField" destination="Cfs-2h-PQ8" id="9CH-8K-nkc"/>
                         <outlet property="signInView" destination="F7I-vs-A5e" id="yz6-vA-xUS"/>
                         <outlet property="signUpButton" destination="DSE-Qh-MDP" id="9kz-di-cyD"/>
@@ -1241,56 +1242,115 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OMk-xI-dDe">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </textAttributes>
-                                <textAttributes key="largeTitleTextAttributes">
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Title" id="OGS-IP-8mA">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="E8a-u4-LZf">
-                                            <connections>
-                                                <action selector="doneBarButton:" destination="DUO-pU-zBg" id="PX4-ZN-6kY"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YsN-cC-wCI">
+                                <rect key="frame" x="16" y="486" width="60" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="63S-JU-NrK"/>
+                                    <constraint firstAttribute="height" constant="70" id="yHR-9R-hh1"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                            </navigationBar>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZjM-0T-WFm" customClass="FaceView" customModule="SpendWiseApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="77" width="320" height="391"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEY-wd-YfF">
+                                <rect key="frame" x="130" y="498" width="60" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="HK7-Aj-00J"/>
+                                    <constraint firstAttribute="width" constant="60" id="OgT-v2-RXB"/>
+                                </constraints>
+                                <state key="normal" image="capture-photo-icon"/>
+                                <connections>
+                                    <action selector="captureAction:" destination="DUO-pU-zBg" eventType="touchUpInside" id="bF7-nA-OTr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1U6-bu-JjA">
+                                <rect key="frame" x="198" y="486" width="106" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="106" id="tRT-dE-3wG"/>
+                                </constraints>
+                                <state key="normal" title="Flash">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="flashAction:" destination="DUO-pU-zBg" eventType="touchUpInside" id="o34-ys-QYR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKp-yR-zs6">
+                                <rect key="frame" x="16" y="20" width="45" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="Z90-Zt-Lsk"/>
+                                    <constraint firstAttribute="width" constant="45" id="uGH-nr-thH"/>
+                                </constraints>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="DUO-pU-zBg" eventType="touchUpInside" id="eeK-xr-ove"/>
+                                    <action selector="rotateAction:" destination="DUO-pU-zBg" eventType="touchUpInside" id="UxQ-Vf-ct4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yn4-7l-FK5">
+                                <rect key="frame" x="223" y="20" width="73" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="Fqj-Tj-MHt"/>
+                                    <constraint firstAttribute="width" constant="73" id="Huf-Z5-eNA"/>
+                                </constraints>
+                                <state key="normal" title="Rotate">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="rotateAction:" destination="DUO-pU-zBg" eventType="touchUpInside" id="2f6-Rh-p46"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <constraints>
+                            <constraint firstItem="XZw-vX-xRy" firstAttribute="trailing" secondItem="1U6-bu-JjA" secondAttribute="trailing" constant="16" id="3US-gD-b5c"/>
+                            <constraint firstItem="ZjM-0T-WFm" firstAttribute="top" secondItem="bKp-yR-zs6" secondAttribute="bottom" constant="8" id="7vl-CH-js2"/>
+                            <constraint firstItem="XZw-vX-xRy" firstAttribute="bottom" secondItem="GEY-wd-YfF" secondAttribute="bottom" constant="20" id="8EL-zL-efx"/>
+                            <constraint firstItem="ZjM-0T-WFm" firstAttribute="trailing" secondItem="XZw-vX-xRy" secondAttribute="trailing" id="9iM-uX-iFA"/>
+                            <constraint firstItem="bKp-yR-zs6" firstAttribute="leading" secondItem="XZw-vX-xRy" secondAttribute="leading" constant="16" id="9jZ-IX-ZdV"/>
+                            <constraint firstItem="yn4-7l-FK5" firstAttribute="top" secondItem="XZw-vX-xRy" secondAttribute="top" id="J1h-bs-CpQ"/>
+                            <constraint firstItem="XZw-vX-xRy" firstAttribute="trailing" secondItem="yn4-7l-FK5" secondAttribute="trailing" constant="24" id="aXE-nR-mhE"/>
+                            <constraint firstItem="XZw-vX-xRy" firstAttribute="bottom" secondItem="1U6-bu-JjA" secondAttribute="bottom" constant="42" id="cTK-t0-w9i"/>
+                            <constraint firstItem="GEY-wd-YfF" firstAttribute="top" secondItem="ZjM-0T-WFm" secondAttribute="bottom" constant="30" id="ges-Qt-ORh"/>
+                            <constraint firstItem="GEY-wd-YfF" firstAttribute="leading" secondItem="YsN-cC-wCI" secondAttribute="trailing" constant="54" id="hIj-GG-OT1"/>
+                            <constraint firstItem="YsN-cC-wCI" firstAttribute="top" secondItem="ZjM-0T-WFm" secondAttribute="bottom" constant="18" id="mKI-Jb-Iy3"/>
+                            <constraint firstItem="bKp-yR-zs6" firstAttribute="top" secondItem="XZw-vX-xRy" secondAttribute="top" id="nnm-dD-gk8"/>
+                            <constraint firstItem="ZjM-0T-WFm" firstAttribute="leading" secondItem="XZw-vX-xRy" secondAttribute="leading" id="raP-2H-fOC"/>
+                            <constraint firstItem="YsN-cC-wCI" firstAttribute="leading" secondItem="XZw-vX-xRy" secondAttribute="leading" constant="16" id="sVF-MS-MXE"/>
+                            <constraint firstItem="ZjM-0T-WFm" firstAttribute="top" secondItem="yn4-7l-FK5" secondAttribute="bottom" constant="8" id="tBI-G0-gVC"/>
+                            <constraint firstItem="XZw-vX-xRy" firstAttribute="bottom" secondItem="YsN-cC-wCI" secondAttribute="bottom" constant="12" id="wcx-qT-SJe"/>
+                            <constraint firstItem="1U6-bu-JjA" firstAttribute="top" secondItem="ZjM-0T-WFm" secondAttribute="bottom" constant="18" id="yiJ-g9-4rh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="XZw-vX-xRy"/>
                     </view>
                     <navigationItem key="navigationItem" id="w4B-vC-yND">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="4XY-sc-flr">
-                            <connections>
-                                <action selector="doneBarButton:" destination="DUO-pU-zBg" id="5wn-ly-vOl"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="4XY-sc-flr"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="backButton" destination="bKp-yR-zs6" id="bGz-Ci-OX3"/>
+                        <outlet property="cameraPreview" destination="ZjM-0T-WFm" id="4i7-Tq-CfG"/>
+                        <outlet property="captureButton" destination="GEY-wd-YfF" id="QCo-5W-VFp"/>
+                        <outlet property="flashButton" destination="1U6-bu-JjA" id="FDU-kQ-dwJ"/>
+                        <outlet property="imageView" destination="YsN-cC-wCI" id="7Kp-fd-3nE"/>
+                        <outlet property="rotateButton" destination="yn4-7l-FK5" id="oOK-Hx-88q"/>
                         <segue destination="dOj-Nj-kGz" kind="show" identifier="CameraScreen_LoginScreen" id="8HG-FQ-8Vz"/>
                         <segue destination="Cwg-OY-ul0" kind="show" identifier="CameraScreen_Signup3" id="40R-HT-m7l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GkL-HK-4hx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-223" y="753"/>
+            <point key="canvasLocation" x="-223.125" y="752.11267605633805"/>
         </scene>
         <!--Title-->
         <scene sceneID="csj-w0-wC2">
@@ -1920,11 +1980,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="DXR-DC-V0l">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="nnL-J3-8gK">
-                            <connections>
-                                <action selector="doneBarButton:" destination="DUO-pU-zBg" id="bT8-m1-IXh"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="nnL-J3-8gK"/>
                     </navigationItem>
                     <connections>
                         <outlet property="confirmPasswordLabel" destination="2lh-dx-yko" id="Vif-h9-5Nd"/>
@@ -9179,6 +9235,7 @@
     <resources>
         <image name="amount-icon" width="512" height="512"/>
         <image name="bang" width="239" height="246"/>
+        <image name="capture-photo-icon" width="120" height="92"/>
         <image name="category-icon" width="200" height="200"/>
         <image name="close-button" width="225" height="225"/>
         <image name="date-icon" width="512" height="511"/>
@@ -9215,13 +9272,13 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="oKo-XM-vjj"/>
-        <segue reference="Max-dz-bbg"/>
+        <segue reference="RbL-lZ-fPe"/>
         <segue reference="nNR-rK-ACa"/>
         <segue reference="Q8I-45-7x1"/>
-        <segue reference="UHa-k0-3lU"/>
+        <segue reference="40R-HT-m7l"/>
         <segue reference="WFM-X3-15B"/>
         <segue reference="WxV-1Y-3wR"/>
         <segue reference="gzS-dL-PPS"/>
-        <segue reference="Gbu-ZL-bz8"/>
+        <segue reference="8HG-FQ-8Vz"/>
     </inferredMetricsTieBreakers>
 </document>

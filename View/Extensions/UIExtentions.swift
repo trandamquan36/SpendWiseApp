@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreGraphics
 
 @IBDesignable
 class DesignableView: UIView {

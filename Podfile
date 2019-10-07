@@ -8,4 +8,6 @@ target 'SpendWiseApp' do
  
 pod 'IQKeyboardManagerSwift', '6.2.1'
 pod 'Charts'
+pod 'SwiftyJSON', '~> 4.0'
+pod 'ReachabilitySwift'
 end
